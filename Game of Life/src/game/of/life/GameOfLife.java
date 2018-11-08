@@ -4,7 +4,6 @@ package game.of.life;
 
 import java.io.*;
 import java.awt.*;
-import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
 
