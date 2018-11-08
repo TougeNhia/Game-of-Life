@@ -24,6 +24,12 @@ public class GameOfLife extends JFrame implements Runnable {
     public GameOfLife() {
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
+                
+                if (e.BUTTON1 == e.getButton() ) {
+                    Board.AddTokenPixel(e.getX() - Window.getX(0),
+                    e.getY() - Window.getY(0));  
+                }
+                
                 repaint();
             }
         });
@@ -74,8 +80,10 @@ public class GameOfLife extends JFrame implements Runnable {
             Window.ysize = getSize().height;
             image = createImage(Window.xsize, Window.ysize);
             g = (Graphics2D) image.getGraphics();
+             Drawing.setDrawingInfo(g,this);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
+            
         }
 //fill background
         
@@ -97,7 +105,6 @@ public class GameOfLife extends JFrame implements Runnable {
         }
         
         Board.Draw(g);
-        
         gOld.drawImage(image, 0, 0, null);
     }
 
