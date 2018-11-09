@@ -15,11 +15,20 @@ public class Player {
     public static int getNumPlayers(){
         return(numPlayers);
     }
-    
-    public void move(){
-        if(currPlayer == this){
-            
-            moves--;
+    public static void switchTurns(){
+        int i = 0;
+        for(Player ptr : players){
+            if(ptr == currPlayer)
+                break;
+            i++;
         }
+        currPlayer = players[i+1];
     }
+    
+//    public void move(){
+//        if(currPlayer == this){
+//            
+//            moves--;
+//        }
+//    }
 }
