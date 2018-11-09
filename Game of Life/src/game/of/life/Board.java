@@ -3,6 +3,7 @@ package game.of.life;
 import java.awt.*;
 
 public class Board {
+    //updated
     private final static int NUM_ROWS = 14;
     private final static int NUM_COLUMNS = 21;      
     private static CarToken board[][] = new CarToken[NUM_ROWS][NUM_COLUMNS];
