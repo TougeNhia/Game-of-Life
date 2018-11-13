@@ -62,14 +62,14 @@ public class Board {
         Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
         Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
-        Image playerCar2 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR 2.png");  
-        Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR 3.png");  
-        Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR 4.png");  
+        Image playerCar2 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png");  
+        Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png");  
+        Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png");  
 //        if (getCurrentPlayer.jobs)
-        Drawing.drawImage(playerCar1, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
-//        Drawing.drawImage(playerCar2, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
-//        Drawing.drawImage(playerCar3, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
-//        Drawing.drawImage(playerCar4, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
+        Drawing.drawImage(playerCar1, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 13), 0.0, 1.0, 1.0);
+        Drawing.drawImage(playerCar2, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 39), 0.0, 1.0, 1.0);
+        Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
+        Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
         
         
  //Draw the grid.
