@@ -16,4 +16,15 @@ public class CarToken {
         g.fillRect(Window.getX(column*xdelta),Window.getY(row*ydelta),xdelta,ydelta); 
         
     }
+    public Player getSlot(int i){
+        return slots[i];
+    }
+    public Player getCurrPlayerSlot(){
+        int i = 0;
+        for(i = 0; i<slots.length;i++){
+            if(slots[i] == Player.getCurrentPlayer())
+                break;
+        }
+        return slots[i];
+    }
 }

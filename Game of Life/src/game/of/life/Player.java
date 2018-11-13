@@ -6,7 +6,9 @@ public class Player {
     private Image car; 
     private int moves;
     private static Player currPlayer;
-    private static Player players[] = new Player[numPlayers];    
+    private static Player players[] = new Player[numPlayers];   
+    private int currRow;
+    private int currCol;
     
     Player(Image _car){
      moves = 0;
@@ -23,16 +25,24 @@ public class Player {
                 break;
             i++;
         }
-        currPlayer = players[i+1];
+        if(i != numPlayers)
+            currPlayer = players[i+1];
+        else
+            currPlayer = players[0];
     }
-    public Player getCurrentPlayer(){
+    public static Player getCurrentPlayer(){
         return currPlayer;
     }
     
-//    public void move(){
-//        if(currPlayer == this){
-//            
-//            moves--;
-//        }
-//    }
+    public void move(){
+        if(currPlayer == this){
+            while(moves > 0)
+//right
+        if(Board.checkBoard(currRow+1,currCol))
+            
+                
+                
+            moves--;
+        }
+    }
 }
