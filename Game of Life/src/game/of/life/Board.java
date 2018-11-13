@@ -60,10 +60,18 @@ public class Board {
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
-        //Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./board.png");  
-//        if (getCurrentPlayer.jobs)
-        //Drawing.drawImage(playerCar1, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
+        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
+        Image playerCar2 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR 2.png");  
+        Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR 3.png");  
+        Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR 4.png");  
+//        if (getCurrentPlayer.jobs)
+        Drawing.drawImage(playerCar1, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
+//        Drawing.drawImage(playerCar2, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
+//        Drawing.drawImage(playerCar3, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
+//        Drawing.drawImage(playerCar4, Window.getX(xdelta * 17), Window.getY(ydelta * 6), 0.0, 1.0, 1.0);
+        
+        
  //Draw the grid.
         g.setColor(Color.black);
         for (int zi = 1;zi<NUM_ROWS;zi++)
