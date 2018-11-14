@@ -51,6 +51,12 @@ public class Board {
             currCol++;
             currXVal += xdelta;
         }
+//        if (board[0][currCol] == null) {
+//            board[currRow][currCol] = new Token(Player.getCurrentPlayer().getColor());
+//            Player.switchTurn();
+//            numTokens++;
+//            return;
+//        }
         System.out.println(currRow + " " + currCol);
         
         return;
