@@ -71,25 +71,26 @@ public class Board {
         Drawing.drawImage(playerCar2, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 39), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
-        
-        
- //       Spinner.draw(g, Window.getX(14*xdelta),Window.getY(7*ydelta));
- //Draw the grid.
-        g.setColor(Color.black);
-        for (int zi = 1;zi<NUM_ROWS;zi++)
-        {
-            g.drawLine(Window.getX(0),Window.getY(zi*ydelta),
-                    Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));
-        }
-// displays the square's corresponding number
-        if(showNumbers){
+g.setColor(Color.black);        
+           if(showNumbers){
             int count = 1;
                 for(int row = 0; row<NUM_ROWS;row++){
                     for (int column = 0;column<NUM_COLUMNS;column++){    
                     g.drawString( row +", " + column, Window.getX(column*xdelta), Window.getY(row*ydelta)+ydelta);
                     count++;
                 }
-            }
+            }     
+ //       Spinner.draw(g, Window.getX(14*xdelta),Window.getY(7*ydelta));
+ 
+ //Draw the grid.
+
+        for (int zi = 1;zi<NUM_ROWS;zi++)
+        {
+            g.drawLine(Window.getX(0),Window.getY(zi*ydelta),
+                    Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));
+        }
+// displays the square's corresponding number
+
 //
             for (int zi = 1;zi<NUM_COLUMNS;zi++)
             {
