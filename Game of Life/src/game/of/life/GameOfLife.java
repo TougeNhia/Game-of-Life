@@ -103,6 +103,14 @@ public class GameOfLife extends JFrame implements Runnable {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
+        
+        g.setColor(Color.black);
+        g.setFont(new Font("Arial",Font.PLAIN,30));
+        g.drawString("Player 1 ="   , 50, 60);
+        g.drawString("Player 2 =" , 300, 60);
+        g.drawString("Player 3 =", 600, 60);
+        g.drawString("Player 4 =", 875, 60);
+        
         Board.Draw(g);
         Spinner.draw(g);
         gOld.drawImage(image, 0, 0, null);
