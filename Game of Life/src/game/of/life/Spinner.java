@@ -6,14 +6,15 @@ public class Spinner {
     final private int numMoves = 8;
     private static Image image = Toolkit.getDefaultToolkit().getImage("./Spinner.png");    
     private final static int NUM_ROWS = 14;
-    private final static int NUM_COLUMNS = 21;  
+    private final static int NUM_COLUMNS = 21; 
+    private static int move;
      
     Spinner(){
         
     }
-    
-    int Spin(){
-    return ((int)(Math.random()*numMoves)+1);
+    public static void Spin(){
+        move = (int)(Math.random()* 20) + 15;
+        
     }
     public static Image getImage(){
         return image;
