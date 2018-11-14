@@ -9,6 +9,11 @@ public class Player {
     private static Player players[] = new Player[numPlayers];   
     private int currRow;
     private int currCol;
+    private Dir direct;
+    public static enum Dir{
+    RIGHT,UP,DOWN,LEFT
+    }
+    
     
     Player(Image _car){
      moves = 0;
@@ -37,9 +42,13 @@ public class Player {
     public void move(){
         if(currPlayer == this){
             while(moves > 0)
-//right
+                
+       if(Board.checkBoard(currRow,currCol+1))
+           Board.updateBoard(currRow,currCol+1);
+//up
         if(Board.checkBoard(currRow+1,currCol))
-            
+            Board.updateBoard(currRow+1,currCol);
+        
                 
                 
             moves--;

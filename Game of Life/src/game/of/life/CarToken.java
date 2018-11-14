@@ -4,10 +4,16 @@ import java.awt.*;
 
 public class CarToken {
     private Color color;
-    private Player slots[] = new Player[Player.getNumPlayers()];
+    public Player slots[] = new Player[Player.getNumPlayers()];
     private Player car;
-    CarToken(Color _color){
-        color = _color;
+    private boolean eventCard;
+    Type type;
+    public static enum Type{ 
+        MOVE, LAYERED
+    };
+    CarToken(Type _type, boolean _eventCard){
+        eventCard = _eventCard;
+        type = _type;
         for(int i=0;i<slots.length;i++)
             slots[i] = null;
     }
@@ -26,5 +32,18 @@ public class CarToken {
                 break;
         }
         return slots[i];
+    }
+    public boolean checkSlots(){
+        if(slots[0] != null)
+            return true;
+        return false;
+    }
+    public void addCar(Player player){
+        for(Player ptr: slots){
+            if(ptr == null){
+                ptr = player;
+                break;
+            }
+        }
     }
 }
