@@ -112,6 +112,7 @@ public class GameOfLife extends JFrame implements Runnable {
         g.drawString("Player 4 =", 875, 60);
         
         Board.Draw(g);
+        Spinner.draw(g);
         gOld.drawImage(image, 0, 0, null);
     }
 
