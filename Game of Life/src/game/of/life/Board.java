@@ -101,18 +101,24 @@ public class Board {
         }
     }
    
-//        public void move(){
-//            Player ptr = Player.getCurrentPlayer();
+        public void move(){
+            
+            Player ptr = Player.getCurrentPlayer();
 //            int moves = ptr.getMoves();
-//            while(moves > 0)
-////right
-//        if(Board.checkBoard(ptr.currRow+1,currCol))
+            if(ptr.getMoves() > 0 && Board.checkBoard(ptr.getRow(),ptr.getCol()+1)){
+//           
+//              board[ptr.getRow()][ptr.getCol()]. = null; 
+//              board[ptr.getRow()][ptr.getCol()+1] = ptr;
+//                
+            }
+//right
+//        
 //            
 //                
 //                
 //            moves--;
 //        
-//    }    
+    }    
     public static void updateBoard(int carrow, int carcolumn){
      for(int row = 0; row<NUM_ROWS;row++){
          for (int column = 0;column<NUM_COLUMNS;column++){

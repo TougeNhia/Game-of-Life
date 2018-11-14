@@ -38,10 +38,18 @@ public class Player {
     public static Player getCurrentPlayer(){
         return currPlayer;
     }
-    
+    public int getMoves(){
+        return moves;
+    }
+    public int getRow(){
+        return currRow;
+    }
+    public int getCol(){
+        return currCol;
+    }
     public void move(){
         if(currPlayer == this){
-            while(moves > 0)
+            
                 
        if(Board.checkBoard(currRow,currCol+1))
            Board.updateBoard(currRow,currCol+1);
