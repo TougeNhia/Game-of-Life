@@ -12,7 +12,8 @@ public class GameOfLife extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
-
+    private int timeCount;
+    
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -148,10 +149,14 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
+        timeCount ++;
+        //timeCount goes 10 up per second.
 
         
     }
-
+public int getTC(){
+return timeCount;
+}
 ////////////////////////////////////////////////////////////////////////////
     public void start() {
         if (relaxer == null) {
