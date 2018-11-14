@@ -85,7 +85,9 @@ public class Board {
         if(showNumbers){
             int count = 1;
                 for(int row = 0; row<NUM_ROWS;row++){
-                    for (int column = 0;column<NUM_COLUMNS;column++){    
+                    for (int column = 0;column<NUM_COLUMNS;column++){ 
+                        g.setColor(Color.black);
+            g.setFont(new Font("Arial",Font.PLAIN,15));
                     g.drawString( row +", " + column, Window.getX(column*xdelta), Window.getY(row*ydelta)+ydelta);
                     count++;
                 }
