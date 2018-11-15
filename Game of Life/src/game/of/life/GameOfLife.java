@@ -13,6 +13,7 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
+    int frameRate = 10;
     
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
@@ -27,7 +28,10 @@ public class GameOfLife extends JFrame implements Runnable {
                 
                 if (e.BUTTON1 == e.getButton() ) {
                     Board.AddTokenPixel(e.getX() - Window.getX(0),
-                    e.getY() - Window.getY(0));  
+                    e.getY() - Window.getY(0)); 
+                    if (Board.detectSpinner(e.getX() - Window.getX(0),
+                    e.getY() - Window.getY(0)))
+                        Spinner.setOn();
                 }
                 
                 repaint();
@@ -123,7 +127,7 @@ public class GameOfLife extends JFrame implements Runnable {
         while (true) {
             animate();
             repaint();
-            double seconds = .1;    //time that 1 frame takes.
+            double seconds = 1/frameRate;    //time that 1 frame takes.
             int miliseconds = (int) (1000.0 * seconds);
             try {
                 Thread.sleep(miliseconds);
@@ -149,7 +153,14 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
-        timeCount ++;
+        if (Spinner.getOn()){
+            for (int i = 0; i < Spinner.Spin(); i++){
+                timeCount ++;
+            }
+            if (timeCount % frameRate == frameRate-1){
+                Spinner.MoveArrow(timeCount);
+            }
+        }
         //timeCount goes 10 up per second.
 
         

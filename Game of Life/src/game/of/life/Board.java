@@ -55,7 +55,32 @@ public class Board {
         
         return;
     }
-    
+        public static boolean detectSpinner(int xpixel,int ypixel){
+            if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
+           ypixel > Window.getHeight2())
+            return false;
+        
+        int currRow = 0;
+        int ydelta = Window.getHeight2()/NUM_ROWS;
+        int currYVal = ydelta;
+        while (ypixel > currYVal)
+        {
+            currRow++;
+            currYVal += ydelta;
+        }
+
+        int currCol = 0;
+        int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        int currXVal = xdelta;
+        while (xpixel > currXVal)
+        {
+            currCol++;
+            currXVal += xdelta;
+        }
+        if (currRow >= 4 && currRow <= 9 && currCol >= 11 && currCol <= 16)
+            return true;
+        return false;
+        }
         public static void Draw(Graphics2D g) {
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
