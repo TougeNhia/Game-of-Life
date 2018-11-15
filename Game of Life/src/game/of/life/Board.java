@@ -9,7 +9,15 @@ public class Board {
     private static CarToken board[][] = new CarToken[NUM_ROWS][NUM_COLUMNS];
     private static boolean showNumbers = true;
     //private static boolean board[][];
-
+        public static void Reset(){
+            new Board();
+            for(int i =0; i<Player.getNumPlayers();i++){
+               if(Player.getPlayer(i) !=null){
+                   board[Player.getPlayer(i).getRow()][Player.getPlayer(i).getCol()].addCar(Player.getPlayer(i));
+               }
+            }
+        }
+    
         Board(){ 
 
             board[0][0] = null;  board[0][1] = new CarToken(CarToken.Type.MOVE, false);   board[0][2] = new CarToken(CarToken.Type.MOVE, false);   board[0][3] = new CarToken(CarToken.Type.MOVE, false);   board[0][4] = new CarToken(CarToken.Type.MOVE, false);   board[0][5] = new CarToken(CarToken.Type.MOVE, false);   board[0][6] = new CarToken(CarToken.Type.MOVE, false);   board[0][7] = new CarToken(CarToken.Type.MOVE, false);   board[0][8] = new CarToken(CarToken.Type.MOVE, false);   board[0][9] = null;  board[0][10] = new CarToken(CarToken.Type.MOVE, false);   board[0][11] = new CarToken(CarToken.Type.MOVE, false);   board[0][12] = new CarToken(CarToken.Type.MOVE, false);   board[0][13] = new CarToken(CarToken.Type.MOVE, false);   board[0][14] = new CarToken(CarToken.Type.MOVE, false);   board[0][15] = null;  board[0][16] = new CarToken(CarToken.Type.MOVE, false);   board[0][17] = new CarToken(CarToken.Type.MOVE, false);   board[0][18] = new CarToken(CarToken.Type.MOVE, false);    board[0][19] = new CarToken(CarToken.Type.MOVE, false);   board[0][20] = new CarToken(CarToken.Type.MOVE, false);
@@ -67,7 +75,7 @@ public class Board {
         Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png");  
         Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png");  
 //        if (getCurrentPlayer.jobs)
-        Drawing.drawImage(playerCar1, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 13), 0.0, 1.0, 1.0);
+        Drawing.drawImage(Player.getPlayer(0).getCar(), Window.getX(xdelta * Player.getPlayer(0).getCol() + 26), Window.getY(ydelta * Player.getPlayer(0).getRow() + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar2, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 39), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
@@ -101,15 +109,16 @@ public class Board {
         }
     }
    
-        public void move(){
+        public static void Move(){
             
             Player ptr = Player.getCurrentPlayer();
 //            int moves = ptr.getMoves();
             if(ptr.getMoves() > 0 && Board.checkBoard(ptr.getRow(),ptr.getCol()+1)){
-//           
-//              board[ptr.getRow()][ptr.getCol()]. = null; 
-//              board[ptr.getRow()][ptr.getCol()+1] = ptr;
-//                
+//            
+             board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null; 
+             board[ptr.getRow()][ptr.getCol()+1].addCar(ptr);
+             ptr.update(ptr.getRow(), ptr.getCol()+1);
+             Player.switchTurns();
             }
 //right
 //        
@@ -138,11 +147,11 @@ public class Board {
         
         
     public static boolean checkBoard(int row,int col){
-        if(row > NUM_ROWS || row < 0 || col > NUM_COLUMNS || col < 0)
-        return false;    
+        if(!(row > NUM_ROWS || row < 0 || col > NUM_COLUMNS || col < 0)){  
         
         if(board[row][col] != null)
             return true;
+        }
         return false;
     }
     public int getNumRows(){

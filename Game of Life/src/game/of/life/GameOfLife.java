@@ -13,6 +13,12 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
+    Image car;
+    Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));;
+    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));;
+    Player plr3;
+    Player plr4;
+    
     
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
@@ -57,6 +63,7 @@ public class GameOfLife extends JFrame implements Runnable {
                 } else if (e.VK_DOWN == e.getKeyCode()) {
                 } else if (e.VK_LEFT == e.getKeyCode()) {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
+                    Board.Move();
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
@@ -104,11 +111,12 @@ public class GameOfLife extends JFrame implements Runnable {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
+        //if
         
         g.setColor(Color.black);
         g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("Player 1 ="   , 50, 60);
-        g.drawString("Player 2 =" , 300, 60);
+        g.drawString("Player 1 =", 50, 60);
+        g.drawString("Player 2 =", 300, 60);
         g.drawString("Player 3 =", 600, 60);
         g.drawString("Player 4 =", 875, 60);
         
@@ -134,7 +142,9 @@ public class GameOfLife extends JFrame implements Runnable {
     
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
-
+        
+        Player.Reset();
+        Board.Reset();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {

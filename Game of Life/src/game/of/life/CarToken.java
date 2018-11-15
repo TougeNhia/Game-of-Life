@@ -33,6 +33,14 @@ public class CarToken {
         }
         return slots[i];
     }
+    public int getCurrPlayerIndex(){
+                int i = 0;
+        for(i = 0; i<slots.length;i++){
+            if(slots[i] == Player.getCurrentPlayer())
+                break;
+        }
+        return i;
+    }
     public boolean checkSlots(){
         if(slots[0] != null)
             return true;
