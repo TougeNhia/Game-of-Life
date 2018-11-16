@@ -90,18 +90,23 @@ public class Board {
         return false;
         }
         public static void Draw(Graphics2D g) {
+            
+            
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
+        
+        
+        
         Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
-        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
+//        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
         Image playerCar2 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png");  
         Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png");  
         Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png");  
 //        if (getCurrentPlayer.jobs)
         Drawing.drawImage(Player.getPlayer(0).getCar(), Window.getX(xdelta * Player.getPlayer(0).getCol() + 26), Window.getY(ydelta * Player.getPlayer(0).getRow() + 13), 0.0, 1.0, 1.0);
-        Drawing.drawImage(playerCar2, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 39), 0.0, 1.0, 1.0);
+        Drawing.drawImage(Player.getPlayer(1).getCar(), Window.getX(xdelta * Player.getPlayer(1).getCol() + 26), Window.getY(ydelta * Player.getPlayer(1).getRow() + 39), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
         
@@ -134,51 +139,38 @@ public class Board {
         }
     }
    
-        public static void Move(){
-            
-            Player ptr = Player.getCurrentPlayer();
-//            int moves = ptr.getMoves();
-            if(ptr.getMoves() > 0 && Board.checkBoard(ptr.getRow(),ptr.getCol()+1)){
+//        public static void Move(){
 //            
-             board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null; 
-             board[ptr.getRow()][ptr.getCol()+1].addCar(ptr);
-             ptr.update(ptr.getRow(), ptr.getCol()+1);
-             Player.switchTurns();
-            }
-//right
-//        
-//            
-//                
-//                
-//            moves--;
-//        
-    }    
+//            Player ptr = Player.getCurrentPlayer();
+////            int moves = ptr.getMoves();
+//            if(ptr.getMoves() > 0 && Board.checkBoard(ptr.getRow(),ptr.getCol()+1)){
+////            
+//             board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null; 
+//             board[ptr.getRow()][ptr.getCol()+1].addCar(ptr);
+//             ptr.update(ptr.getRow(), ptr.getCol()+1);
+//            }    
+//    }    
     public static void updateBoard(int carrow, int carcolumn){
-     for(int row = 0; row<NUM_ROWS;row++){
-         for (int column = 0;column<NUM_COLUMNS;column++){
-             if(board[row][column].checkSlots()){
-                   for(Player ptr : board[row][column].slots ){
-                       if(ptr == Player.getCurrentPlayer()){   
-                           ptr = null;
-                           board[carrow][carcolumn].addCar(Player.getCurrentPlayer());
-                           return;
-                       }
-
-                    }
-                }
-            }
-        }
+            Player ptr = Player.getCurrentPlayer();
+            board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null;  
+            board[carrow][carcolumn].addCar(ptr);
+             ptr.update(carrow, carcolumn);
+             
     }
         
         
     public static boolean checkBoard(int row,int col){
-        if(!(row > NUM_ROWS || row < 0 || col > NUM_COLUMNS || col < 0)){  
-        
+        if( row >= NUM_ROWS || row < 0 || col >= NUM_COLUMNS || col < 0 || board[row][col] == null )
+            return false;
+
+        if(board[row][col].checkSlots())
+            return false;        
         if(board[row][col] != null)
             return true;
-        }
         return false;
-    }
+        }
+       
+    
     public int getNumRows(){
         return NUM_ROWS;
     }

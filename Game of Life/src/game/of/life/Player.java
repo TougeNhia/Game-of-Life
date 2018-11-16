@@ -29,7 +29,7 @@ public class Player {
     }
     
     Player(Image _car){
-     moves = 2;
+     moves = 10;
      car = _car;
      currRow = 6;
      currCol = 17;
@@ -44,16 +44,13 @@ public class Player {
         return(numPlayers);
     }
     public static void switchTurns(){
-        int i = 0;
+        System.out.println(currPlayer.currRow + " " + currPlayer.currCol);
         for(Player ptr : players){
-            if(ptr == currPlayer)
+            if(ptr != currPlayer){
+                currPlayer = ptr;
                 break;
-            i++;
+            }
         }
-        if(i != numPlayers-1)
-            currPlayer = players[i+1];
-        else
-            currPlayer = players[0];
     }
     public static Player getCurrentPlayer(){
         return currPlayer;
@@ -71,19 +68,39 @@ public class Player {
         currRow = row;
         currCol = col;
     }
-    public void move(){
-        if(currPlayer == this){
+    public void move(Dir direction){
+        
             
                 
-       if(Board.checkBoard(currRow,currCol+1))
-           Board.updateBoard(currRow,currCol+1);
-//up
-        if(Board.checkBoard(currRow+1,currCol))
-            Board.updateBoard(currRow+1,currCol);
-        
-                
-                
+       if( direction == Dir.RIGHT && Board.checkBoard(currRow,currCol+1)){
+            Board.updateBoard(currRow,currCol+1);
             moves--;
-        }
+            switchTurns();
+           
+       }
+           
+//up
+       else if(direction == Dir.UP && Board.checkBoard(currRow-1,currCol)){
+            Board.updateBoard(currRow-1,currCol);
+             moves--;
+             switchTurns();
+            } 
+        
+       else if(direction == Dir.LEFT && Board.checkBoard(currRow,currCol-1)){
+            Board.updateBoard(currRow,currCol-1);
+             moves--;
+             switchTurns();
+            }
+        
+       else if(direction == Dir.DOWN && Board.checkBoard(currRow+1,currCol)){
+            Board.updateBoard(currRow+1,currCol);
+             moves--;
+             switchTurns();
+            }
+                
+                
+          System.out.println(moves);      
+            
+        
     }
 }

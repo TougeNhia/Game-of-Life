@@ -14,10 +14,10 @@ public class GameOfLife extends JFrame implements Runnable {
     Graphics2D g;
     private int timeCount;
     Image car;
-    Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));;
-    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));;
-    Player plr3;
-    Player plr4;
+    Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
+    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
+    Player plr3 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"));
+    Player plr4 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png"));
     
     
     public static void main(String[] args) {
@@ -59,11 +59,13 @@ public class GameOfLife extends JFrame implements Runnable {
 
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
-                    
+                    Player.getCurrentPlayer().move(Player.Dir.UP);
                 } else if (e.VK_DOWN == e.getKeyCode()) {
+                    Player.getCurrentPlayer().move(Player.Dir.DOWN);
                 } else if (e.VK_LEFT == e.getKeyCode()) {
+                    Player.getCurrentPlayer().move(Player.Dir.LEFT);
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
-                    Board.Move();
+                    Player.getCurrentPlayer().move(Player.Dir.RIGHT);
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
@@ -159,7 +161,7 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
-        timeCount ++;
+        timeCount++;
         //timeCount goes 10 up per second.
 
         

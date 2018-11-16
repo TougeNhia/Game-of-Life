@@ -12,7 +12,17 @@ public class Spinner {
     private static int move;
     private static double rot = 90;
     private static boolean on = false;
-     
+    private int xpos  = Window.getX(xdelta * 14)- (Drawing.getImageWidth(spinner)/2);
+    private int ypos = Window.getY(ydelta * 7)- (Drawing.getImageHeight(spinner)/2);
+    private int xsize = Window.getX(xdelta * 14) + (Drawing.getImageWidth(spinner)/2);
+    private int ysize = Window.getY(ydelta * 7) + (Drawing.getImageHeight(spinner)/2);
+    private static int ydelta = Window.getHeight2()/NUM_ROWS;
+    private static int xdelta = Window.getWidth2()/NUM_COLUMNS;    
+     public boolean collide(int xpixel, int ypixel){
+         
+         
+         return true;
+     }
     Spinner(){
         sec = 0;
         move = 0;
@@ -48,6 +58,18 @@ public class Spinner {
         
         on = false;
     }
+    public int getXPos(){
+        return xpos;
+    }
+    public int getYPos(){
+        return ypos;
+    }
+    public int getXSize(){
+        return xsize;
+    }
+    public int getYSize(){
+        return ysize;
+    }
     public static Image getSpinner(){
         return spinner;
     }
@@ -58,9 +80,7 @@ public class Spinner {
         return on;
     }
     public static void draw(Graphics2D g){
-        int ydelta = Window.getHeight2()/NUM_ROWS;
-        int xdelta = Window.getWidth2()/NUM_COLUMNS;
-        Drawing.drawImage(spinner, Window.getX(xdelta * 14), Window.getY(ydelta * 7), 0.0, 1.0, 1.0);
+       Drawing.drawImage(spinner, Window.getX(xdelta * 14), Window.getY(ydelta * 7), 0.0, 1.0, 1.0);
         Drawing.drawImage(arrow, Window.getX(xdelta * 14), Window.getY(ydelta * 7), rot, 1.0, 1.0);
     }
 }
