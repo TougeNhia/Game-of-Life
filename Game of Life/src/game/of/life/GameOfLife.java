@@ -13,7 +13,6 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
-    
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -107,10 +106,10 @@ public class GameOfLife extends JFrame implements Runnable {
         
         g.setColor(Color.black);
         g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("Player 1 ="   , 50, 60);
+        g.drawString("Player 1 ="    , 50, 60);
         g.drawString("Player 2 =" , 300, 60);
-        g.drawString("Player 3 =", 600, 60);
-        g.drawString("Player 4 =", 875, 60);
+        g.drawString("Player 3 =" , 600, 60);
+        g.drawString("Player 4 =" , 875, 60);
         
         Board.Draw(g);
         Spinner.draw(g);
@@ -151,9 +150,8 @@ public class GameOfLife extends JFrame implements Runnable {
         }
         timeCount ++;
         //timeCount goes 10 up per second.
-
-        
     }
+
 public int getTC(){
 return timeCount;
 }

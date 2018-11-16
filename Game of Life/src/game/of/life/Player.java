@@ -9,6 +9,7 @@ public class Player {
     private static Player players[] = new Player[numPlayers];   
     private int currRow;
     private int currCol;
+    private int money;
     private Dir direct;
     public static enum Dir{
     RIGHT,UP,DOWN,LEFT
@@ -18,6 +19,7 @@ public class Player {
     Player(Image _car){
      moves = 0;
      car = _car;
+     money =0;
     }
     
     public static int getNumPlayers(){
@@ -62,4 +64,15 @@ public class Player {
             moves--;
         }
     }
+        public void payDay(int salary){
+        money += salary;
+    }
+    public void changeMoney(int card_value){
+        money += card_value;
+    }
+ 
+    public int getMoney(){
+        return money;
+    }
+    
 }
