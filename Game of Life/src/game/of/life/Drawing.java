@@ -21,14 +21,6 @@ public class Drawing {
         g = _g;
         mainClassInst = _mainClassInst;
     }
-    public static int getImageWidth(Image image){
-        return image.getWidth(mainClassInst);
-    }
-    public static int getImageHeight(Image image){
-        return image.getHeight(mainClassInst);
-    }
-    
-    
 ////////////////////////////////////////////////////////////////////////////
     public static void drawCircle(int xpos,int ypos,double rot,double xscale,double yscale,Color color)
     {

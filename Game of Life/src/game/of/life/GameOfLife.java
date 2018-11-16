@@ -13,13 +13,6 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
-    Image car;
-    Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
-    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
-    Player plr3 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"));
-    Player plr4 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png"));
-    
-    
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -59,13 +52,10 @@ public class GameOfLife extends JFrame implements Runnable {
 
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
-                    Player.getCurrentPlayer().move(Player.Dir.UP);
+                    
                 } else if (e.VK_DOWN == e.getKeyCode()) {
-                    Player.getCurrentPlayer().move(Player.Dir.DOWN);
                 } else if (e.VK_LEFT == e.getKeyCode()) {
-                    Player.getCurrentPlayer().move(Player.Dir.LEFT);
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
-                    Player.getCurrentPlayer().move(Player.Dir.RIGHT);
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
@@ -113,14 +103,13 @@ public class GameOfLife extends JFrame implements Runnable {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
-        //if
         
         g.setColor(Color.black);
         g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("Player 1 =", 50, 60);
-        g.drawString("Player 2 =", 300, 60);
-        g.drawString("Player 3 =", 600, 60);
-        g.drawString("Player 4 =", 875, 60);
+        g.drawString("Player 1 ="    , 50, 60);
+        g.drawString("Player 2 =" , 300, 60);
+        g.drawString("Player 3 =" , 600, 60);
+        g.drawString("Player 4 =" , 875, 60);
         
         Board.Draw(g);
         Spinner.draw(g);
@@ -144,9 +133,7 @@ public class GameOfLife extends JFrame implements Runnable {
     
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
-        
-        Player.Reset();
-        Board.Reset();
+
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
@@ -161,11 +148,10 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
-        timeCount++;
+        timeCount ++;
         //timeCount goes 10 up per second.
-
-        
     }
+
 public int getTC(){
 return timeCount;
 }

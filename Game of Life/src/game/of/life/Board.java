@@ -5,20 +5,12 @@ import java.awt.*;
 public class Board {
     //updated
     private final static int NUM_ROWS = 14;
-    private final static int NUM_COLUMNS = 21;      
+    private final static int NUM_COLUMNS = 21;
     private static CarToken board[][] = new CarToken[NUM_ROWS][NUM_COLUMNS];
     private static boolean showNumbers = true;
     //private static boolean board[][];
-        public static void Reset(){
-            new Board();
-            for(int i =0; i<Player.getNumPlayers();i++){
-               if(Player.getPlayer(i) !=null){
-                   board[Player.getPlayer(i).getRow()][Player.getPlayer(i).getCol()].addCar(Player.getPlayer(i));
-               }
-            }
-        }
-    
-        Board(){ 
+
+        Board(){
 
             board[0][0] = null;  board[0][1] = new CarToken(CarToken.Type.MOVE, false);   board[0][2] = new CarToken(CarToken.Type.MOVE, false);   board[0][3] = new CarToken(CarToken.Type.MOVE, false);   board[0][4] = new CarToken(CarToken.Type.MOVE, false);   board[0][5] = new CarToken(CarToken.Type.MOVE, false);   board[0][6] = new CarToken(CarToken.Type.MOVE, false);   board[0][7] = new CarToken(CarToken.Type.MOVE, false);   board[0][8] = new CarToken(CarToken.Type.MOVE, false);   board[0][9] = null;  board[0][10] = new CarToken(CarToken.Type.MOVE, false);   board[0][11] = new CarToken(CarToken.Type.MOVE, false);   board[0][12] = new CarToken(CarToken.Type.MOVE, false);   board[0][13] = new CarToken(CarToken.Type.MOVE, false);   board[0][14] = new CarToken(CarToken.Type.MOVE, false);   board[0][15] = null;  board[0][16] = new CarToken(CarToken.Type.MOVE, false);   board[0][17] = new CarToken(CarToken.Type.MOVE, false);   board[0][18] = new CarToken(CarToken.Type.MOVE, false);    board[0][19] = new CarToken(CarToken.Type.MOVE, false);   board[0][20] = new CarToken(CarToken.Type.MOVE, false);
             board[1][0] = new CarToken(CarToken.Type.MOVE, false);   board[1][1] = new CarToken(CarToken.Type.MOVE, false);   board[1][2] = null;  board[1][3] = null;  board[1][4] = null;  board[1][5] = null;  board[1][6] = null;  board[1][7] = null;  board[1][8] = new CarToken(CarToken.Type.MOVE, false);   board[1][9] = null;  board[1][10] = new CarToken(CarToken.Type.MOVE, false);   board[1][11] = null;  board[1][12] = null;  board[1][13] = null;  board[1][14] = new CarToken(CarToken.Type.MOVE, false);   board[1][15] = null;  board[1][16] = new CarToken(CarToken.Type.MOVE, false);   board[1][17] = new CarToken(CarToken.Type.MOVE, false);   board[1][18] = null;   board[1][19] = null;  board[1][20] = new CarToken(CarToken.Type.MOVE, false);
@@ -35,13 +27,13 @@ public class Board {
             board[12][0] = new CarToken(CarToken.Type.MOVE, false);  board[12][1] = null; board[12][2] = null; board[12][3] = null; board[12][4] = null; board[12][5] = null; board[12][6] = null; board[12][7] = null; board[12][8] = null; board[12][9] = new CarToken(CarToken.Type.MOVE, false);  board[12][10] = new CarToken(CarToken.Type.MOVE, false);  board[12][11] = null; board[12][12] = new CarToken(CarToken.Type.MOVE, false);  board[12][13] = new CarToken(CarToken.Type.MOVE, false);  board[12][14] = null; board[12][15] = null; board[12][16] = null; board[12][17] = null; board[12][18] = null;  board[12][19] = new CarToken(CarToken.Type.MOVE, false);  board[12][20] = null;
             board[13][0] = new CarToken(CarToken.Type.MOVE, false);  board[13][1] = new CarToken(CarToken.Type.MOVE, false);  board[13][2] = new CarToken(CarToken.Type.MOVE, false);  board[13][3] = new CarToken(CarToken.Type.MOVE, false);  board[13][4] = new CarToken(CarToken.Type.MOVE, false);  board[13][5] = new CarToken(CarToken.Type.MOVE, false);  board[13][6] = new CarToken(CarToken.Type.MOVE, false);  board[13][7] = new CarToken(CarToken.Type.MOVE, false);  board[13][8] = new CarToken(CarToken.Type.MOVE, false);  board[13][9] = new CarToken(CarToken.Type.MOVE, false);  board[13][10] = null; board[13][11] = null; board[13][12] = null; board[13][13] = new CarToken(CarToken.Type.MOVE, false);  board[13][14] = new CarToken(CarToken.Type.MOVE, false);  board[13][15] = new CarToken(CarToken.Type.MOVE, false);  board[13][16] = new CarToken(CarToken.Type.MOVE, false);  board[13][17] = new CarToken(CarToken.Type.MOVE, false);  board[13][18] = new CarToken(CarToken.Type.MOVE, false);   board[13][19] = new CarToken(CarToken.Type.MOVE, false);  board[13][20] = null;
         }
-    
+
         public static void AddTokenPixel(int xpixel,int ypixel) {
 
-        if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
+        if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 ||
            ypixel > Window.getHeight2())
             return;
-        
+
         int currRow = 0;
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int currYVal = ydelta;
@@ -60,57 +52,27 @@ public class Board {
             currXVal += xdelta;
         }
         System.out.println(currRow + " " + currCol);
-        
+
         return;
     }
-        public static boolean detectSpinner(int xpixel,int ypixel){
-            if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
-           ypixel > Window.getHeight2())
-            return false;
-        
-        int currRow = 0;
-        int ydelta = Window.getHeight2()/NUM_ROWS;
-        int currYVal = ydelta;
-        while (ypixel > currYVal)
-        {
-            currRow++;
-            currYVal += ydelta;
-        }
 
-        int currCol = 0;
-        int xdelta = Window.getWidth2()/NUM_COLUMNS;
-        int currXVal = xdelta;
-        while (xpixel > currXVal)
-        {
-            currCol++;
-            currXVal += xdelta;
-        }
-        if (currRow >= 4 && currRow <= 9 && currCol >= 11 && currCol <= 16)
-            return true;
-        return false;
-        }
         public static void Draw(Graphics2D g) {
-            
-            
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
-        
-        
-        
-        Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
+        Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
-//        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
-        Image playerCar2 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png");  
-        Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png");  
-        Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png");  
+        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");
+        Image playerCar2 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png");
+        Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png");
+        Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png");
 //        if (getCurrentPlayer.jobs)
-        Drawing.drawImage(Player.getPlayer(0).getCar(), Window.getX(xdelta * Player.getPlayer(0).getCol() + 26), Window.getY(ydelta * Player.getPlayer(0).getRow() + 13), 0.0, 1.0, 1.0);
-        Drawing.drawImage(Player.getPlayer(1).getCar(), Window.getX(xdelta * Player.getPlayer(1).getCol() + 26), Window.getY(ydelta * Player.getPlayer(1).getRow() + 39), 0.0, 1.0, 1.0);
+        Drawing.drawImage(playerCar1, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 13), 0.0, 1.0, 1.0);
+        Drawing.drawImage(playerCar2, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 6 + 39), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
-        
-        
+
+
  //       Spinner.draw(g, Window.getX(14*xdelta),Window.getY(7*ydelta));
  //Draw the grid.
         g.setColor(Color.black);
@@ -123,7 +85,7 @@ public class Board {
         if(showNumbers){
             int count = 1;
                 for(int row = 0; row<NUM_ROWS;row++){
-                    for (int column = 0;column<NUM_COLUMNS;column++){ 
+                    for (int column = 0;column<NUM_COLUMNS;column++){
                         g.setColor(Color.black);
             g.setFont(new Font("Arial",Font.PLAIN,15));
                     g.drawString( row +", " + column, Window.getX(column*xdelta), Window.getY(row*ydelta)+ydelta);
@@ -138,38 +100,51 @@ public class Board {
             }
         }
     }
-   
-//        public static void Move(){
-//            
-//            Player ptr = Player.getCurrentPlayer();
-////            int moves = ptr.getMoves();
-//            if(ptr.getMoves() > 0 && Board.checkBoard(ptr.getRow(),ptr.getCol()+1)){
-////            
-//             board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null; 
-//             board[ptr.getRow()][ptr.getCol()+1].addCar(ptr);
-//             ptr.update(ptr.getRow(), ptr.getCol()+1);
-//            }    
-//    }    
-    public static void updateBoard(int carrow, int carcolumn){
-            Player ptr = Player.getCurrentPlayer();
-            board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null;  
-            board[carrow][carcolumn].addCar(ptr);
-             ptr.update(carrow, carcolumn);
-    } 
-        
-        
-    public static boolean checkBoard(int row,int col){
-        if( row >= NUM_ROWS || row < 0 || col >= NUM_COLUMNS || col < 0 || board[row][col] == null )
-            return false;
 
-        if(board[row][col].checkSlots())
-            return false;        
+        public void move(){
+
+            Player ptr = Player.getCurrentPlayer();
+//            int moves = ptr.getMoves();
+            if(ptr.getMoves() > 0 && Board.checkBoard(ptr.getRow(),ptr.getCol()+1)){
+//
+//              board[ptr.getRow()][ptr.getCol()]. = null;
+//              board[ptr.getRow()][ptr.getCol()+1] = ptr;
+//
+            }
+//right
+//
+//
+//
+//
+//            moves--;
+//
+    }
+    public static void updateBoard(int carrow, int carcolumn){
+     for(int row = 0; row<NUM_ROWS;row++){
+         for (int column = 0;column<NUM_COLUMNS;column++){
+             if(board[row][column].checkSlots()){
+                   for(Player ptr : board[row][column].slots ){
+                       if(ptr == Player.getCurrentPlayer()){
+                           ptr = null;
+                           board[carrow][carcolumn].addCar(Player.getCurrentPlayer());
+                           return;
+                       }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+    public static boolean checkBoard(int row,int col){
+        if(row > NUM_ROWS || row < 0 || col > NUM_COLUMNS || col < 0)
+        return false;
+
         if(board[row][col] != null)
             return true;
         return false;
-        }
-       
-    
+    }
     public int getNumRows(){
         return NUM_ROWS;
     }
