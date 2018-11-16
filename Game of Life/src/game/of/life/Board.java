@@ -155,8 +155,7 @@ public class Board {
             board[ptr.getRow()][ptr.getCol()].slots[board[ptr.getRow()][ptr.getCol()].getCurrPlayerIndex()] = null;  
             board[carrow][carcolumn].addCar(ptr);
              ptr.update(carrow, carcolumn);
-             
-    }
+    } 
         
         
     public static boolean checkBoard(int row,int col){
