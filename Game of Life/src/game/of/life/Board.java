@@ -55,7 +55,11 @@ public class Board {
 
         return;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> parent of 14e47bd... Spinner class changes
         public static void Draw(Graphics2D g) {
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;

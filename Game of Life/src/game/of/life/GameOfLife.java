@@ -13,6 +13,10 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> parent of 14e47bd... Spinner class changes
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
