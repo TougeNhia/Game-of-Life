@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 package game.of.life;
 
@@ -9,6 +10,23 @@ public class Button extends Page {
     int ysize;
     int xpos;
     int ypos;
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package game.of.life;
+
+import java.awt.*;
+
+public class Button extends Page {
+    private int xsize;
+    private int ysize;
+    private int xpos;
+    private int ypos;
+    private boolean isActive;
+>>>>>>> parent of e5ede38... Merge branch 'master' of https://github.com/TougeNhia/Game-of-Life
     Button(String name, Tab _tab, int _xsize, int _ysize, int _xpos, int _ypos){
     super(name, _tab);
     xsize = _xsize;
