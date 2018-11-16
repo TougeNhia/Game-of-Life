@@ -51,8 +51,7 @@ public class Player {
     }
     public void move(){
         if(currPlayer == this){
-            
-                
+
        if(Board.checkBoard(currRow,currCol+1))
            Board.updateBoard(currRow,currCol+1);
 //up
