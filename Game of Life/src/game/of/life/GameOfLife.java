@@ -17,7 +17,10 @@ public class GameOfLife extends JFrame implements Runnable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 14e47bd... Spinner class changes
 =======
 >>>>>>> parent of 14e47bd... Spinner class changes
 =======
@@ -176,7 +179,11 @@ public class GameOfLife extends JFrame implements Runnable {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         timeCount++;
+=======
+        timeCount ++;
+>>>>>>> parent of 14e47bd... Spinner class changes
 =======
         timeCount ++;
 >>>>>>> parent of 14e47bd... Spinner class changes

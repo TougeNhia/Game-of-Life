@@ -10,6 +10,7 @@ public class Spinner {
     private static int move;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static double rot = 90;
     private static boolean on = false;
     private int xpos  = Window.getX(xdelta * 14)- (Drawing.getImageWidth(spinner)/2);
@@ -26,10 +27,13 @@ public class Spinner {
 =======
 =======
 >>>>>>> parent of 14e47bd... Spinner class changes
+=======
+>>>>>>> parent of 14e47bd... Spinner class changes
      
 >>>>>>> parent of 14e47bd... Spinner class changes
     Spinner(){
         
+<<<<<<< HEAD
 <<<<<<< HEAD
     }
 <<<<<<< HEAD
@@ -62,6 +66,13 @@ public class Spinner {
         
 >>>>>>> parent of 14e47bd... Spinner class changes
     }
+=======
+    }
+    public static void Spin(){
+        move = (int)(Math.random()* 20) + 15;
+        
+    }
+>>>>>>> parent of 14e47bd... Spinner class changes
     public static Image getImage(){
         return image;
     }
@@ -75,6 +86,9 @@ public class Spinner {
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         Drawing.drawImage(image, Window.getX(xdelta * 14), Window.getY(ydelta * 7), 0.0, 1.0, 1.0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 14e47bd... Spinner class changes
+=======
 >>>>>>> parent of 14e47bd... Spinner class changes
 =======
 >>>>>>> parent of 14e47bd... Spinner class changes
