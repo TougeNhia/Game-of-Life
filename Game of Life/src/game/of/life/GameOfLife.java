@@ -15,7 +15,10 @@ public class GameOfLife extends JFrame implements Runnable {
     private int timeCount;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 14e47bd... Spinner class changes
     
 >>>>>>> parent of 14e47bd... Spinner class changes
 =======
@@ -168,7 +171,11 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
+<<<<<<< HEAD
         timeCount++;
+=======
+        timeCount ++;
+>>>>>>> parent of 14e47bd... Spinner class changes
         //timeCount goes 10 up per second.
 
         
