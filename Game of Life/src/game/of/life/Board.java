@@ -66,6 +66,7 @@ public class Board {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
@@ -98,6 +99,9 @@ public class Board {
         return false;
         }
 >>>>>>> parent of e5ede38... Merge branch 'master' of https://github.com/TougeNhia/Game-of-Life
+=======
+    
+>>>>>>> parent of 14e47bd... Spinner class changes
 =======
     
 >>>>>>> parent of 14e47bd... Spinner class changes
