@@ -8,27 +8,33 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GameOfLife extends JFrame implements Runnable {
- 
+    
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
     private int timeCount;
-
     Image car;
     Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
     Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
     Player plr3 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"));
     Player plr4 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png"));
     
-
+    Page menu = Page.Create(Page.Tab.MENU, Toolkit.getDefaultToolkit().getImage("./Menu.jpg"));
+    Page ingame = Page.Create(Page.Tab.PLAY);
+    Button playButton = menu.createButton(Button.Type.PLAY,Window.getX(0),Window.getY(0),Window.getX(25),Window.getY(85));
+    
+    
+    
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 
     public GameOfLife() {
+                Page.SetPage(menu);
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 
@@ -119,16 +125,8 @@ public class GameOfLife extends JFrame implements Runnable {
             return;
         }
         //if
-        
-        g.setColor(Color.black);
-        g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("Player 1 =", 50, 60);
-        g.drawString("Player 2 =", 300, 60);
-        g.drawString("Player 3 =", 600, 60);
-        g.drawString("Player 4 =", 875, 60);
-        
+        Page.loadPage(g, Page.GetCurrPage());
         Board.Draw(g);
-        Spinner.draw(g);
         gOld.drawImage(image, 0, 0, null);
     }
 
@@ -152,6 +150,7 @@ public class GameOfLife extends JFrame implements Runnable {
         
         Player.Reset();
         Board.Reset();
+        Spinner.Reset();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {

@@ -8,6 +8,7 @@ public class Board {
     private final static int NUM_COLUMNS = 21;      
     private static CarToken board[][] = new CarToken[NUM_ROWS][NUM_COLUMNS];
     private static boolean showNumbers = true;
+    private static boolean isActive = true;
     //private static boolean board[][];
         public static void Reset(){
             new Board();
@@ -35,7 +36,9 @@ public class Board {
             board[12][0] = new CarToken(CarToken.Type.MOVE, false);  board[12][1] = null; board[12][2] = null; board[12][3] = null; board[12][4] = null; board[12][5] = null; board[12][6] = null; board[12][7] = null; board[12][8] = null; board[12][9] = new CarToken(CarToken.Type.MOVE, false);  board[12][10] = new CarToken(CarToken.Type.MOVE, false);  board[12][11] = null; board[12][12] = new CarToken(CarToken.Type.MOVE, false);  board[12][13] = new CarToken(CarToken.Type.MOVE, false);  board[12][14] = null; board[12][15] = null; board[12][16] = null; board[12][17] = null; board[12][18] = null;  board[12][19] = new CarToken(CarToken.Type.MOVE, false);  board[12][20] = null;
             board[13][0] = new CarToken(CarToken.Type.MOVE, false);  board[13][1] = new CarToken(CarToken.Type.MOVE, false);  board[13][2] = new CarToken(CarToken.Type.MOVE, false);  board[13][3] = new CarToken(CarToken.Type.MOVE, false);  board[13][4] = new CarToken(CarToken.Type.MOVE, false);  board[13][5] = new CarToken(CarToken.Type.MOVE, false);  board[13][6] = new CarToken(CarToken.Type.MOVE, false);  board[13][7] = new CarToken(CarToken.Type.MOVE, false);  board[13][8] = new CarToken(CarToken.Type.MOVE, false);  board[13][9] = new CarToken(CarToken.Type.MOVE, false);  board[13][10] = null; board[13][11] = null; board[13][12] = null; board[13][13] = new CarToken(CarToken.Type.MOVE, false);  board[13][14] = new CarToken(CarToken.Type.MOVE, false);  board[13][15] = new CarToken(CarToken.Type.MOVE, false);  board[13][16] = new CarToken(CarToken.Type.MOVE, false);  board[13][17] = new CarToken(CarToken.Type.MOVE, false);  board[13][18] = new CarToken(CarToken.Type.MOVE, false);   board[13][19] = new CarToken(CarToken.Type.MOVE, false);  board[13][20] = null;
         }
-    
+        public static void changeActive(boolean b){
+            isActive = b;
+        }
         public static void AddTokenPixel(int xpixel,int ypixel) {
 
         if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
@@ -92,14 +95,19 @@ public class Board {
         return false;
         }
         public static void Draw(Graphics2D g) {
-            
-            
+          if(isActive)  
+          { 
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         
         
-        
+                g.setColor(Color.black);
+        g.setFont(new Font("Arial",Font.PLAIN,30));
+        g.drawString("Player 1 =", 50, 60);
+        g.drawString("Player 2 =", 300, 60);
+        g.drawString("Player 3 =", 600, 60);
+        g.drawString("Player 4 =", 875, 60);
         Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
 //        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
@@ -113,7 +121,7 @@ public class Board {
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
         
         
- //       Spinner.draw(g, Window.getX(14*xdelta),Window.getY(7*ydelta));
+         Spinner.draw(g);
  //Draw the grid.
         g.setColor(Color.black);
         for (int zi = 1;zi<NUM_ROWS;zi++)
@@ -138,6 +146,7 @@ public class Board {
                 g.drawLine(Window.getX(zi*xdelta),Window.getY(0),
                         Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
             }
+        }
         }
     }
    

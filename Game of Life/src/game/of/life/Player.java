@@ -52,6 +52,9 @@ public class Player {
             }
         }
     }
+    public void changeMoves(int _moves){
+        moves += _moves;
+    }
     public static Player getCurrentPlayer(){
         return currPlayer;
     }

@@ -3,7 +3,7 @@ package game.of.life;
 import java.awt.*;
 
 public class Spinner {
-    final private int numMoves = 8;
+    final static private int numMoves = 8;
     private static Image spinner = Toolkit.getDefaultToolkit().getImage("./Spinner.png");  
     private static Image arrow = Toolkit.getDefaultToolkit().getImage("./arrow.png"); 
     private final static int NUM_ROWS = 14;
@@ -23,10 +23,16 @@ public class Spinner {
          
          return true;
      }
+     public static void Reset(){
+        sec = 0;
+        move = 0;
+        rot = 0;
+        on = false;    
+     }
     Spinner(){
         sec = 0;
         move = 0;
-        rot = 90;
+        rot = 0;
         on = false;
     }
     public static void setOn(){
@@ -43,20 +49,42 @@ public class Spinner {
         }
         for (int i = 0; i < move; i++){
             rot += 22.5;
+            if(rot >= 360)
+                rot = 0;
         }
         boolean keepLooping = true;
-            if (rot == 0 || rot == 90 || rot == 180 || rot == 360){
+            if (rot == 0 || rot == 45 || rot == 90 || rot == 135 || rot == 180 || rot == 225 || rot == 270 || rot == 315 ||  rot == 360){
                 while (keepLooping)
                     for (int i = 0; i < move; i++){
-                    rot += 22.5;
-                        if (rot != 0 || rot != 90 || rot != 180 || rot != 360){
+                        rot += 22.5;
+                        if(rot >= 360)
+                            rot = 0;                    
+                        if (rot != 0 || rot != 45 || rot != 90 || rot != 135 || rot != 180 || rot != 225 || rot != 270 || rot != 315 ||  rot != 360){
                             keepLooping = false;
                         }
                     }
             keepLooping = false;    
             }
-        
+       
         on = false;
+        int moves = 0;
+        int test = 45;
+        for(int i = 0; i < numMoves;i++){
+            
+            
+            if(rot >= (test - test) && rot <= test){
+               if(i == 0)
+                   moves = 8;
+                break; 
+            }
+                
+           
+            moves++;
+            test+=45;
+        }
+        System.out.println("rot: " + rot);
+         System.out.println("moves: " + moves);
+        Player.getCurrentPlayer().changeMoves(moves);
     }
     public int getXPos(){
         return xpos;
