@@ -13,29 +13,14 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
->>>>>>> parent of 14e47bd... Spinner class changes
-    
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
+
     Image car;
     Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
     Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
     Player plr3 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"));
     Player plr4 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png"));
     
-    
->>>>>>> parent of e5ede38... Merge branch 'master' of https://github.com/TougeNhia/Game-of-Life
+
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -50,6 +35,10 @@ public class GameOfLife extends JFrame implements Runnable {
                 if (e.BUTTON1 == e.getButton() ) {
                     Board.AddTokenPixel(e.getX() - Window.getX(0),
                     e.getY() - Window.getY(0));  
+                    if(Board.detectSpinner(e.getX() - Window.getX(0),
+                    e.getY() - Window.getY(0)))
+                        Spinner.MoveArrow(timeCount);
+                    
                 }
                 
                 repaint();
@@ -177,19 +166,7 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         timeCount++;
-=======
-        timeCount ++;
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
-        timeCount ++;
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
-        timeCount ++;
->>>>>>> parent of 14e47bd... Spinner class changes
         //timeCount goes 10 up per second.
 
         

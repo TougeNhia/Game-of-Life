@@ -63,16 +63,8 @@ public class Board {
         
         return;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+   
 
-=======
-    
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
         public static boolean detectSpinner(int xpixel,int ypixel){
             if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
            ypixel > Window.getHeight2())
@@ -99,16 +91,6 @@ public class Board {
             return true;
         return false;
         }
->>>>>>> parent of e5ede38... Merge branch 'master' of https://github.com/TougeNhia/Game-of-Life
-=======
-    
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
-    
->>>>>>> parent of 14e47bd... Spinner class changes
-=======
-    
->>>>>>> parent of 14e47bd... Spinner class changes
         public static void Draw(Graphics2D g) {
             
             
