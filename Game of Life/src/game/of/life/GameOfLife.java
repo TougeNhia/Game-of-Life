@@ -28,7 +28,6 @@ public class GameOfLife extends JFrame implements Runnable {
     Button backToMenu = rules.createButton(Button.Type.CANCEL, 60, 60, 200, 142);
     //Button move = ingame.createButton(Button.Type.PLAY, ERROR, ERROR, WIDTH, WIDTH);
     
-    
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
@@ -38,7 +37,6 @@ public class GameOfLife extends JFrame implements Runnable {
         System.out.println(Window.WINDOW_WIDTH);
         System.out.println(Window.WINDOW_HEIGHT);
     }
-
     public GameOfLife() {
                 Page.SetPage(menu);
         addMouseListener(new MouseAdapter() {
@@ -50,18 +48,14 @@ public class GameOfLife extends JFrame implements Runnable {
                     e.getY() - Window.getY(0));  
                     if(Board.detectSpinner(e.getX() - Window.getX(0),
                     e.getY() - Window.getY(0)))
-                        Spinner.MoveArrow(timeCount);
-                    
+                        Spinner.MoveArrow(timeCount);  
                 }
-                
                 repaint();
             }
         });
             
-
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
-
         repaint();
       }
     });
@@ -111,7 +105,6 @@ public class GameOfLife extends JFrame implements Runnable {
              Drawing.setDrawingInfo(g,this);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
-            
         }
 //fill background
 //        
@@ -155,28 +148,22 @@ public class GameOfLife extends JFrame implements Runnable {
     
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
-        
         Player.Reset();
         Board.Reset();
         Spinner.Reset();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
-
         if (animateFirstTime) {
             animateFirstTime = false;
             if (Window.xsize != getSize().width || Window.ysize != getSize().height) {
                 Window.xsize = getSize().width;
                 Window.ysize = getSize().height;
             }
-
             reset();
-
         }
         timeCount++;
         //timeCount goes 10 up per second.
-//        Player.getCurrentPlayer().move();
-        
     }
 public int getTC(){
 return timeCount;

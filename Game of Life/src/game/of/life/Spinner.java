@@ -19,8 +19,6 @@ public class Spinner {
     private static int ydelta = Window.getHeight2()/NUM_ROWS;
     private static int xdelta = Window.getWidth2()/NUM_COLUMNS;    
      public boolean collide(int xpixel, int ypixel){
-         
-         
          return true;
      }
      public static void Reset(){
@@ -68,7 +66,6 @@ public class Spinner {
                     }
             keepLooping = false;    
             }
-       
         on = false;
         int moves = 0;
         int test = 45;
@@ -78,8 +75,6 @@ public class Spinner {
                    moves = 8;
                 break; 
             }
-                
-           
             moves++;
             test+=45;
         }

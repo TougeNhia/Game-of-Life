@@ -6,7 +6,6 @@ import java.awt.Image;
 public class Drawing {
     private static Graphics2D g;
     private static GameOfLife mainClassInst;
-
     public static void setDrawingInfo(Graphics2D _g,GameOfLife _mainClassInst) {
         g = _g;
         mainClassInst = _mainClassInst;

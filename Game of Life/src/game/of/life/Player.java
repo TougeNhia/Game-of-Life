@@ -4,7 +4,6 @@ public class Player {
     
     final private static int numPlayers = 4;
     private static Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
-
     private Image car; 
     private int moves;
     private static Player currPlayer;
@@ -26,11 +25,9 @@ public class Player {
                players[i] = ptr; 
                break;
            }
-       }
-           
+       }      
     return ptr;
     }
-    
     Player(Image _car){
      moves = 0;
      car = _car;
@@ -55,7 +52,6 @@ public class Player {
                     currPlayer = players[i+1];
                 else
                     currPlayer = players[0];
-                
                 break;
             }
         }
@@ -89,38 +85,27 @@ public class Player {
         currCol = col;
     }
     public void move(Dir direction){
-        
-            
-                
        if( direction == Dir.RIGHT && Board.checkBoard(currRow,currCol+1)){
             Board.updateBoard(currRow,currCol+1);
             moves--;
             switchTurns();
-           
        }
-           
 //up
        else if(direction == Dir.UP && Board.checkBoard(currRow-1,currCol)){
             Board.updateBoard(currRow-1,currCol);
              moves--;
              switchTurns();
             } 
-        
        else if(direction == Dir.LEFT && Board.checkBoard(currRow,currCol-1)){
             Board.updateBoard(currRow,currCol-1);
              moves--;
              switchTurns();
             }
-        
        else if(direction == Dir.DOWN && Board.checkBoard(currRow+1,currCol)){
             Board.updateBoard(currRow+1,currCol);
              moves--;
              switchTurns();
             }
-                
-                
           System.out.println(moves);      
-            
-        
     }
 }

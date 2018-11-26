@@ -30,9 +30,7 @@ public class Button {
             if(type == Type.PLAY){
                 Board.changeActive(true);
                 ptr = Page.GetPage(Page.Tab.PLAY);
-           
             }
-        
             else if (type == Type.RULES){
                 ptr = Page.GetPage(Page.Tab.RULES);
             }
@@ -56,7 +54,6 @@ public class Button {
         else if(type == Type.LEFT){
             Page.ChangePreviewIndex(-1);
         }
-        
         }
         else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
             if(type == Type.RIGHT){
@@ -86,5 +83,4 @@ public class Button {
     int getYPos2(){
         return(ypos + ysize); 
     }
-    
 }

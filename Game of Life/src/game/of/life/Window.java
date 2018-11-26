@@ -8,12 +8,10 @@ public class Window {
     private static final int YTITLE = 30;
     private static final int WINDOW_BORDER = 8;
     
-    
     static final int WINDOW_WIDTH = 2*(WINDOW_BORDER + XBORDER) + 1116;
     static final int WINDOW_HEIGHT = YTITLE + WINDOW_BORDER + 870;
     static int xsize = -1;
     static int ysize = -1;
-
 
 /////////////////////////////////////////////////////////////////////////
     public static int getX(int x) {
