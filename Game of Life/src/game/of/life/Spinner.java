@@ -10,7 +10,7 @@ public class Spinner {
     private final static int NUM_COLUMNS = 21; 
     private static int sec;
     private static int move;
-    private static double rot = 90;
+    private static double rot = 67.5;
     private static boolean on = false;
     private int xpos  = Window.getX(xdelta * 14)- (Drawing.getImageWidth(spinner)/2);
     private int ypos = Window.getY(ydelta * 7)- (Drawing.getImageHeight(spinner)/2);
@@ -26,13 +26,13 @@ public class Spinner {
      public static void Reset(){
         sec = 0;
         move = 0;
-        rot = 90;
+        rot = 67.5;
         on = false;    
      }
     Spinner(){
         sec = 0;
         move = 0;
-        rot = 0;
+        rot = 67.5;
         on = false;
     }
     public static void setOn(){
