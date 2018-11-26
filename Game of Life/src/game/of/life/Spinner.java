@@ -26,7 +26,7 @@ public class Spinner {
      public static void Reset(){
         sec = 0;
         move = 0;
-        rot = 0;
+        rot = 90;
         on = false;    
      }
     Spinner(){
@@ -63,6 +63,7 @@ public class Spinner {
                             rot = 0;                    
                         if (rot != 0 || rot != 45 || rot != 90 || rot != 135 || rot != 180 || rot != 225 || rot != 270 || rot != 315 ||  rot != 360){
                             keepLooping = false;
+                            break;
                         }
                     }
             keepLooping = false;    
@@ -72,8 +73,6 @@ public class Spinner {
         int moves = 0;
         int test = 45;
         for(int i = 0; i < numMoves;i++){
-            
-            
             if(rot >= (test - test) && rot <= test){
                if(i == 0)
                    moves = 8;

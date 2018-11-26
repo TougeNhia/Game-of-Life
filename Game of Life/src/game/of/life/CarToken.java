@@ -12,7 +12,7 @@ public class CarToken {
     Player.Dir dir2;
     Type type;
     public static enum Type{ 
-        MOVE, LAYERED
+        MOVE, LAYERED,FORK
     };
     CarToken(Type _type, boolean _eventCard){
         eventCard = _eventCard;

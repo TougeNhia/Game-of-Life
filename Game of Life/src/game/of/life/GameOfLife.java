@@ -27,7 +27,8 @@ public class GameOfLife extends JFrame implements Runnable {
     Button ruleButton = menu.createButton(Button.Type.RULES,18,558,295,130);
     Button rightArrow = playerselect.createButton(Button.Type.RIGHT,721,262,200,142);
     Button leftArrow = playerselect.createButton(Button.Type.LEFT,255,262,200,142);
-    
+    Button backToMenu = rules.createButton(Button.Type.CANCEL, 60, 60, 200, 142);
+    //Button move = ingame.createButton(Button.Type.PLAY, ERROR, ERROR, WIDTH, WIDTH);
     
     
     public static void main(String[] args) {
@@ -176,7 +177,7 @@ public class GameOfLife extends JFrame implements Runnable {
         }
         timeCount++;
         //timeCount goes 10 up per second.
-
+//        Player.getCurrentPlayer().move();
         
     }
 public int getTC(){

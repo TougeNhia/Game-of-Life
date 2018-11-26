@@ -38,6 +38,18 @@ public class Button {
                 ptr = Page.GetPage(Page.Tab.RULES);
             }
         }
+        else if(ptr.getTab() == Page.Tab.RULES){
+            if(type == Type.CANCEL){
+               ptr =  Page.GetPage(Page.Tab.MENU);
+            }
+//        if(type == Type.RIGHT){
+//           
+//        }
+//        else if(type == Type.LEFT){
+//            
+//        }
+        }
+        
         else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
         if(type == Type.RIGHT){
             Page.ChangePreviewIndex(1);

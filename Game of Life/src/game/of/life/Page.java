@@ -71,10 +71,16 @@ public static Page Create(Tab _type){
        g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
  }
  else if(page.type == Tab.PLAY){
+     if(Player.getCurrentPlayer().hasSpun()){
+         for(Button ptr: page.buttons)
+         g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+     }
      
  }
  else if (page.type == Tab.RULES){
  Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
+ for(Button ptr: page.buttons)
+     g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
  }
  else if(page.type == Tab.PLAYERSELECT){ 
      Image list[] = Player.getCarList();
