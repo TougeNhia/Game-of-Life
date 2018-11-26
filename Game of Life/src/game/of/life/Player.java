@@ -4,7 +4,9 @@ public class Player {
     
     final private static int numPlayers = 4;
     private static Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
+
     private Image car; 
+    private int money;
     private int moves;
     private static Player currPlayer;
     private static Player players[] = new Player[numPlayers];   
@@ -27,13 +29,46 @@ public class Player {
            }
        }      
     return ptr;
+    }  
+    
+    public static Player addPlayer(Image _car, int test){
+       Player ptr = new Player(_car, test);
+       for(int i=0; i<numPlayers;i++){
+           if(players[i] == null){
+               players[i] = ptr; 
+               break;
+           }
+       }
+       return ptr;
     }
+    
     Player(Image _car){
      moves = 0;
      car = _car;
      currRow = 6;
      currCol = 17;
+     money = 10000;
     }
+        Player(Image _car, boolean college){
+     if(college)
+     {
+         moves = 0;
+        car = _car;
+        currRow = 7;
+        currCol = 17;
+        money = 0;
+     }
+
+         
+    }      
+    Player(Image _car, int test){
+    
+         moves = 0;
+        car = _car;
+        currRow = 6;
+        currCol = 18;
+        money = 0;
+        }
     public static Player getPlayer(int i){
         return players[i];
     }
@@ -47,17 +82,23 @@ public class Player {
         System.out.println(currPlayer.currRow + " " + currPlayer.currCol);
         for(int i=0;i<players.length;i++){
             if(players[i] == currPlayer){
-                currPlayer.hasSpun = false;
                 if(i+1 < players.length)
                     currPlayer = players[i+1];
                 else
                     currPlayer = players[0];
+                
                 break;
             }
         }
     }
     public void changeMoves(int _moves){
         moves += _moves;
+    }
+    public Dir getDir(){
+        return direct;
+    }
+    public int getMoney(){
+        return money;
     }
     public static Player getCurrentPlayer(){
         return currPlayer;
@@ -85,27 +126,43 @@ public class Player {
         currCol = col;
     }
     public void move(Dir direction){
+       direct = direction; 
+            
+                
        if( direction == Dir.RIGHT && Board.checkBoard(currRow,currCol+1)){
             Board.updateBoard(currRow,currCol+1);
             moves--;
-            switchTurns();
+            
+           
        }
+           
 //up
        else if(direction == Dir.UP && Board.checkBoard(currRow-1,currCol)){
             Board.updateBoard(currRow-1,currCol);
              moves--;
-             switchTurns();
+            
             } 
+        
        else if(direction == Dir.LEFT && Board.checkBoard(currRow,currCol-1)){
             Board.updateBoard(currRow,currCol-1);
              moves--;
-             switchTurns();
+             
             }
+        
        else if(direction == Dir.DOWN && Board.checkBoard(currRow+1,currCol)){
             Board.updateBoard(currRow+1,currCol);
              moves--;
-             switchTurns();
+             
             }
-          System.out.println(moves);      
+       if(moves <= 0){
+           currPlayer.hasSpun = false;
+           switchTurns();
+          // Cards.rollEvent(currPlayer);
+           
+       }
+       System.out.println(moves);  
+              
+            
+        
     }
 }

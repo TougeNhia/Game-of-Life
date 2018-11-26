@@ -1,4 +1,6 @@
+
 package game.of.life;
+
 
 import java.io.*;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class GameOfLife extends JFrame implements Runnable {
     private int timeCount;
     Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
     Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
-    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
+    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"), 1 );
     Player plr3;
     Player plr4;
     Page ingame = Page.Create(Page.Tab.PLAY);
@@ -26,7 +28,8 @@ public class GameOfLife extends JFrame implements Runnable {
     Button rightArrow = playerselect.createButton(Button.Type.RIGHT,721,262,200,142);
     Button leftArrow = playerselect.createButton(Button.Type.LEFT,255,262,200,142);
     Button backToMenu = rules.createButton(Button.Type.CANCEL, 60, 60, 200, 142);
-    //Button move = ingame.createButton(Button.Type.PLAY, ERROR, ERROR, WIDTH, WIDTH);
+    //Button move = ingame.createButton(Button.Type.PLAY, , ERROR, WIDTH, WIDTH);
+    
     
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
@@ -37,6 +40,7 @@ public class GameOfLife extends JFrame implements Runnable {
         System.out.println(Window.WINDOW_WIDTH);
         System.out.println(Window.WINDOW_HEIGHT);
     }
+
     public GameOfLife() {
                 Page.SetPage(menu);
         addMouseListener(new MouseAdapter() {
@@ -48,14 +52,18 @@ public class GameOfLife extends JFrame implements Runnable {
                     e.getY() - Window.getY(0));  
                     if(Board.detectSpinner(e.getX() - Window.getX(0),
                     e.getY() - Window.getY(0)))
-                        Spinner.MoveArrow(timeCount);  
+                        Spinner.MoveArrow(timeCount);
+                    
                 }
+                
                 repaint();
             }
         });
             
+
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
+
         repaint();
       }
     });
@@ -105,6 +113,7 @@ public class GameOfLife extends JFrame implements Runnable {
              Drawing.setDrawingInfo(g,this);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
+            
         }
 //fill background
 //        
@@ -148,22 +157,34 @@ public class GameOfLife extends JFrame implements Runnable {
     
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
+        
         Player.Reset();
         Board.Reset();
         Spinner.Reset();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
+
         if (animateFirstTime) {
             animateFirstTime = false;
             if (Window.xsize != getSize().width || Window.ysize != getSize().height) {
                 Window.xsize = getSize().width;
                 Window.ysize = getSize().height;
             }
+
             reset();
+
         }
         timeCount++;
         //timeCount goes 10 up per second.
+        if(Player.getCurrentPlayer().getMoves() > 0){
+        if(timeCount % 10 == 9){
+        if(Board.checkCurrTileDir() != null)
+        Player.getCurrentPlayer().move(Board.checkCurrTileDir());
+        else
+        Player.getCurrentPlayer().move(Player.getCurrentPlayer().getDir());
+        }
+     }
     }
 public int getTC(){
 return timeCount;

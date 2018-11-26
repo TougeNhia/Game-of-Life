@@ -9,7 +9,7 @@ public class CarToken {
     private boolean eventCard;
     private boolean layered;
     private Player.Dir dir;
-    Player.Dir dir2;
+    private Player.Dir dir2;
     Type type;
     public static enum Type{ 
         MOVE, LAYERED,FORK
@@ -41,6 +41,12 @@ public class CarToken {
     }
     public Player getSlot(int i){
         return slots[i];
+    }
+    public Player.Dir getDir(){
+        return dir;
+    }
+    public Player.Dir getDir2(){
+        return dir2;
     }
     public Player getCurrPlayerSlot(){
         int i = 0;

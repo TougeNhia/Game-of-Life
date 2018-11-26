@@ -18,7 +18,9 @@ public class Board {
                }
             }
         }
+    
         Board(){ 
+
             board[0][0] = null;  board[0][1] = new CarToken(CarToken.Type.MOVE, Player.Dir.DOWN);   board[0][2] = new CarToken(CarToken.Type.MOVE, false);   board[0][3] = new CarToken(CarToken.Type.MOVE, false);   board[0][4] = new CarToken(CarToken.Type.MOVE, false);   board[0][5] = new CarToken(CarToken.Type.MOVE, false);   board[0][6] = new CarToken(CarToken.Type.MOVE, false);   board[0][7] = new CarToken(CarToken.Type.MOVE, false);   board[0][8] = new CarToken(CarToken.Type.MOVE, Player.Dir.LEFT);   board[0][9] = null;  board[0][10] = new CarToken(CarToken.Type.MOVE, Player.Dir.DOWN);   board[0][11] = new CarToken(CarToken.Type.MOVE, false);   board[0][12] = new CarToken(CarToken.Type.MOVE, false);   board[0][13] = new CarToken(CarToken.Type.MOVE, false);   board[0][14] = new CarToken(CarToken.Type.MOVE, Player.Dir.LEFT);   board[0][15] = null;  board[0][16] = new CarToken(CarToken.Type.MOVE, Player.Dir.DOWN);   board[0][17] = new CarToken(CarToken.Type.MOVE, false);   board[0][18] = new CarToken(CarToken.Type.MOVE, false);    board[0][19] = new CarToken(CarToken.Type.MOVE, false);   board[0][20] = new CarToken(CarToken.Type.MOVE, Player.Dir.LEFT);
             board[1][0] = new CarToken(CarToken.Type.MOVE, Player.Dir.DOWN);   board[1][1] = new CarToken(CarToken.Type.MOVE, Player.Dir.LEFT);   board[1][2] = null;  board[1][3] = null;  board[1][4] = null;  board[1][5] = null;  board[1][6] = null;  board[1][7] = null;  board[1][8] = new CarToken(CarToken.Type.MOVE, false);   board[1][9] = null;  board[1][10] = new CarToken(CarToken.Type.MOVE, false);   board[1][11] = null;  board[1][12] = null;  board[1][13] = null;  board[1][14] = new CarToken(CarToken.Type.MOVE, false);   board[1][15] = null;  board[1][16] = new CarToken(CarToken.Type.MOVE, Player.Dir.RIGHT);   board[1][17] = new CarToken(CarToken.Type.MOVE, Player.Dir.DOWN);   board[1][18] = null;   board[1][19] = null;  board[1][20] = new CarToken(CarToken.Type.MOVE, false);
             board[2][0] = new CarToken(CarToken.Type.MOVE, false);   board[2][1] = null;  board[2][2] = new CarToken(CarToken.Type.MOVE, Player.Dir.RIGHT);   board[2][3] = new CarToken(CarToken.Type.MOVE, false);   board[2][4] = new CarToken(CarToken.Type.MOVE, Player.Dir.DOWN);   board[2][5] = null;  board[2][6] = new CarToken(CarToken.Type.MOVE, Player.Dir.RIGHT);   board[2][7] = new CarToken(CarToken.Type.MOVE, false);   board[2][8] = new CarToken(CarToken.Type.MOVE, false);   board[2][9] = null;  board[2][10] = new CarToken(CarToken.Type.MOVE, false);   board[2][11] = null;  board[2][12] = null;  board[2][13] = null;  board[2][14] = new CarToken(CarToken.Type.MOVE, false);   board[2][15] = null;  board[2][16] = null;  board[2][17] = new CarToken(CarToken.Type.MOVE, false);   board[2][18] = null;   board[2][19] = null;  board[2][20] = new CarToken(CarToken.Type.MOVE, false);
@@ -38,10 +40,13 @@ public class Board {
             isActive = b;
         }
         public static void AddTokenPixel(int xpixel,int ypixel) {
-        Page.GetCurrPage().detect(xpixel + Window.getX(0),ypixel + Window.getY(0)); 
+            
+        Page.GetCurrPage().detect(xpixel + Window.getX(0),ypixel + Window.getY(0));    
+            
         if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
            ypixel > Window.getHeight2())
             return;
+        
         int currRow = 0;
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int currYVal = ydelta;
@@ -50,6 +55,7 @@ public class Board {
             currRow++;
             currYVal += ydelta;
         }
+
         int currCol = 0;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         int currXVal = xdelta;
@@ -58,13 +64,18 @@ public class Board {
             currCol++;
             currXVal += xdelta;
         }
+
         System.out.println(currRow + " " + currCol);
+        
         return;
     }
+   
+
         public static boolean detectSpinner(int xpixel,int ypixel){
             if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
            ypixel > Window.getHeight2())
             return false;
+        
         int currRow = 0;
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int currYVal = ydelta;
@@ -73,6 +84,7 @@ public class Board {
             currRow++;
             currYVal += ydelta;
         }
+
         int currCol = 0;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         int currXVal = xdelta;
@@ -86,18 +98,19 @@ public class Board {
         return false;
         }
         public static void Draw(Graphics2D g) {
-        if(isActive)  
-        { 
+          if(isActive)  
+          { 
 //Calculate the width and height of each board square.
         int ydelta = Window.getHeight2()/NUM_ROWS;
         int xdelta = Window.getWidth2()/NUM_COLUMNS;
         
-        g.setColor(Color.black);
+        
+                g.setColor(Color.black);
         g.setFont(new Font("Arial",Font.PLAIN,20));
-        g.drawString("Player 1 =", 25, Window.getY(Window.getHeight2())+30);
-        g.drawString("Player 2 =", 275, Window.getY(Window.getHeight2())+30);
-        g.drawString("Player 3 =", 575, Window.getY(Window.getHeight2())+30);
-        g.drawString("Player 4 =", 850, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 1 = $" + Player.getPlayer(0).getMoney(), 25, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 2 = $" + Player.getPlayer(1).getMoney(), 275, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 3 = ", 575, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 4 = ", 850, Window.getY(Window.getHeight2())+30);
         Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
 //        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
@@ -110,6 +123,8 @@ public class Board {
         Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
         
+        
+         
  //Draw the grid.
         g.setColor(Color.black);
         for (int zi = 1;zi<NUM_ROWS;zi++)
@@ -137,6 +152,7 @@ public class Board {
         }
         Spinner.draw(g);
         }
+          
     }
    
 //        public static void Move(){
@@ -156,6 +172,8 @@ public class Board {
             board[carrow][carcolumn].addCar(ptr);
              ptr.update(carrow, carcolumn);
     } 
+        
+        
     public static boolean checkBoard(int row,int col){
         if( row >= NUM_ROWS || row < 0 || col >= NUM_COLUMNS || col < 0 || board[row][col] == null )
             return false;
@@ -165,7 +183,15 @@ public class Board {
         if(board[row][col] != null)
             return true;
         return false;
-        }     
+        }
+       
+    public static Player.Dir checkCurrTileDir(){
+         Player ptr = Player.getCurrentPlayer();
+         if(board[ptr.getRow()][ptr.getCol()].getDir() != null){
+             return board[ptr.getRow()][ptr.getCol()].getDir();
+         }
+         return null;
+    }
     public int getNumRows(){
         return NUM_ROWS;
     }
