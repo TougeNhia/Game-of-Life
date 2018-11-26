@@ -20,11 +20,14 @@ public class GameOfLife extends JFrame implements Runnable {
     Player plr4;
     Page ingame = Page.Create(Page.Tab.PLAY);
     Page playerselect = Page.Create(Page.Tab.PLAYERSELECT,Toolkit.getDefaultToolkit().getImage("./Player Select.png" ));
+    Page rules = Page.Create(Page.Tab.RULES,Toolkit.getDefaultToolkit().getImage("./Rule Screen.png" ));
     Page menu = Page.Create(Page.Tab.MENU, Toolkit.getDefaultToolkit().getImage("./Menu Screen.png"));
 
     Button playButton = menu.createButton(Button.Type.PLAY,18,389,295,130);
+    Button ruleButton = menu.createButton(Button.Type.RULES,18,558,295,130);
     Button rightArrow = playerselect.createButton(Button.Type.RIGHT,721,262,200,142);
     Button leftArrow = playerselect.createButton(Button.Type.LEFT,255,262,200,142);
+    
     
     
     public static void main(String[] args) {

@@ -26,12 +26,19 @@ public class Button {
     public Page pressed(Page ptr){
         System.out.println("pressed");
         isActive = true;
-        if(type == Type.PLAY){
-            Board.changeActive(true);
-            ptr = Page.GetPage(Page.Tab.PLAY);
+        
+        if(ptr.getTab() == Page.Tab.MENU){
+            if(type == Type.PLAY){
+                Board.changeActive(true);
+                ptr = Page.GetPage(Page.Tab.PLAY);
            
+            }
+        
+            else if (type == Type.RULES){
+                ptr = Page.GetPage(Page.Tab.RULES);
+            }
         }
-        if(ptr.getTab() == Page.Tab.PLAYERSELECT){
+        else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
         if(type == Type.RIGHT){
             Page.ChangePreviewIndex(1);
         }
@@ -39,6 +46,14 @@ public class Button {
             Page.ChangePreviewIndex(-1);
         }
         
+        }
+        else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
+            if(type == Type.RIGHT){
+                
+            }
+            if(type == Type.LEFT){
+                
+            }
         }
         return ptr;
     }

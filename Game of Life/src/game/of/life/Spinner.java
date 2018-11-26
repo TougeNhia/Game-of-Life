@@ -44,6 +44,8 @@ public class Spinner {
         return sec;
     }
     public static void MoveArrow(int _timecount){
+        if(Player.getCurrentPlayer().hasSpun())
+            return;
         while (_timecount > move){
             move++;
         }
@@ -83,8 +85,10 @@ public class Spinner {
             test+=45;
         }
         System.out.println("rot: " + rot);
-         System.out.println("moves: " + moves);
+//         System.out.println("moves: " + moves);
         Player.getCurrentPlayer().changeMoves(moves);
+        Player.getCurrentPlayer().setSpun(true);
+        System.out.println("moves: " + Player.getCurrentPlayer().getMoves());
     }
     public int getXPos(){
         return xpos;

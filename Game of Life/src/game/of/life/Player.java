@@ -12,6 +12,7 @@ public class Player {
     private int currRow;
     private int currCol;
     private Dir direct;
+    private boolean hasSpun;
     public static enum Dir{
     RIGHT,UP,DOWN,LEFT
     }
@@ -31,7 +32,7 @@ public class Player {
     }
     
     Player(Image _car){
-     moves = 10;
+     moves = 0;
      car = _car;
      currRow = 6;
      currCol = 17;
@@ -47,9 +48,14 @@ public class Player {
     }
     public static void switchTurns(){
         System.out.println(currPlayer.currRow + " " + currPlayer.currCol);
-        for(Player ptr : players){
-            if(ptr != currPlayer){
-                currPlayer = ptr;
+        for(int i=0;i<players.length;i++){
+            if(players[i] == currPlayer){
+                currPlayer.hasSpun = false;
+                if(i+1 < players.length)
+                    currPlayer = players[i+1];
+                else
+                    currPlayer = players[0];
+                
                 break;
             }
         }
@@ -68,6 +74,12 @@ public class Player {
     }
     public int getCol(){
         return currCol;
+    }
+    public boolean hasSpun(){
+        return hasSpun;
+    }
+     public void setSpun(boolean b){
+        hasSpun = b;
     }
     public static Image[] getCarList(){
         return cars;

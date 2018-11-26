@@ -16,7 +16,7 @@ private Image image;
 private ArrayList<Button> buttons = new ArrayList<Button>();
 private static ArrayList<Page>pages = new ArrayList<Page>();
 public static enum Tab{
-    MENU, PLAY, PLAYERSELECT
+    MENU, PLAY, PLAYERSELECT,RULES
 }
 private Tab type;
 private static Page currPage;
@@ -72,6 +72,9 @@ public static Page Create(Tab _type){
  }
  else if(page.type == Tab.PLAY){
      
+ }
+ else if (page.type == Tab.RULES){
+ Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
  }
  else if(page.type == Tab.PLAYERSELECT){ 
      Image list[] = Player.getCarList();
