@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.of.life;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
-/**
- *
- * @author 146004429
- */
 public class Drawing {
     private static Graphics2D g;
     private static GameOfLife mainClassInst;
