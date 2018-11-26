@@ -8,29 +8,51 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GameOfLife extends JFrame implements Runnable {
- 
+    
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
     private int timeCount;
-<<<<<<< HEAD
-=======
+    Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
+    Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
+    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
+    Player plr3;
+    Player plr4;
+    Page ingame = Page.Create(Page.Tab.PLAY);
+    Page playerselect = Page.Create(Page.Tab.PLAYERSELECT,Toolkit.getDefaultToolkit().getImage("./Player Select.png" ));
+    Page rules = Page.Create(Page.Tab.RULES,Toolkit.getDefaultToolkit().getImage("./Rule Screen.png" ));
+    Page menu = Page.Create(Page.Tab.MENU, Toolkit.getDefaultToolkit().getImage("./Menu Screen.png"));
+
+    Button playButton = menu.createButton(Button.Type.PLAY,18,389,295,130);
+    Button ruleButton = menu.createButton(Button.Type.RULES,18,558,295,130);
+    Button rightArrow = playerselect.createButton(Button.Type.RIGHT,721,262,200,142);
+    Button leftArrow = playerselect.createButton(Button.Type.LEFT,255,262,200,142);
     
->>>>>>> parent of 14e47bd... Spinner class changes
+    
+    
     public static void main(String[] args) {
         GameOfLife frame = new GameOfLife();
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setResizable(false);
+        System.out.println(Window.WINDOW_WIDTH);
+        System.out.println(Window.WINDOW_HEIGHT);
     }
 
     public GameOfLife() {
+                Page.SetPage(menu);
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 
                 if (e.BUTTON1 == e.getButton() ) {
+                    System.out.println((e.getX() - Window.getX(0)) + " , " + (e.getY() - Window.getY(0)));
                     Board.AddTokenPixel(e.getX() - Window.getX(0),
                     e.getY() - Window.getY(0));  
+                    if(Board.detectSpinner(e.getX() - Window.getX(0),
+                    e.getY() - Window.getY(0)))
+                        Spinner.MoveArrow(timeCount);
+                    
                 }
                 
                 repaint();
@@ -56,10 +78,13 @@ public class GameOfLife extends JFrame implements Runnable {
 
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
-                    
+                    Player.getCurrentPlayer().move(Player.Dir.UP);
                 } else if (e.VK_DOWN == e.getKeyCode()) {
+                    Player.getCurrentPlayer().move(Player.Dir.DOWN);
                 } else if (e.VK_LEFT == e.getKeyCode()) {
+                    Player.getCurrentPlayer().move(Player.Dir.LEFT);
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
+                    Player.getCurrentPlayer().move(Player.Dir.RIGHT);
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
@@ -90,33 +115,27 @@ public class GameOfLife extends JFrame implements Runnable {
             
         }
 //fill background
-        
-        g.setColor(Color.cyan);
-        g.fillRect(0, 0, Window.xsize, Window.ysize);
-
+//        
+//        g.setColor(Color.cyan);
+//        g.fillRect(0, 0, Window.xsize, Window.ysize);
+        Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("Background.png"), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
+      
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
 //fill border
         g.setColor(Color.white);
         g.fillPolygon(x, y, 4);
 // draw border
-        g.setColor(Color.red);
+        g.setColor(Color.black);
         g.drawPolyline(x, y, 5);
 
         if (animateFirstTime) {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
-        
-        g.setColor(Color.black);
-        g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("Player 1 ="    , 50, 60);
-        g.drawString("Player 2 =" , 300, 60);
-        g.drawString("Player 3 =" , 600, 60);
-        g.drawString("Player 4 =" , 875, 60);
-        
+        //if
+        Page.loadPage(g, Page.GetCurrPage());
         Board.Draw(g);
-        Spinner.draw(g);
         gOld.drawImage(image, 0, 0, null);
     }
 
@@ -137,7 +156,10 @@ public class GameOfLife extends JFrame implements Runnable {
     
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
-
+        
+        Player.Reset();
+        Board.Reset();
+        Spinner.Reset();
     }
 /////////////////////////////////////////////////////////////////////////
     public void animate() {
@@ -152,10 +174,11 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
-        timeCount ++;
+        timeCount++;
         //timeCount goes 10 up per second.
-    }
 
+        
+    }
 public int getTC(){
 return timeCount;
 }

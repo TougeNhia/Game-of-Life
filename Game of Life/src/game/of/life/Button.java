@@ -3,14 +3,18 @@ package game.of.life;
 
 import java.awt.*;
 
-public class Button extends Page {
+public class Button {
+    private int xsize;
+    private int ysize;
+    private int xpos;
+    private int ypos;
     private boolean isActive;
-    int xsize;
-    int ysize;
-    int xpos;
-    int ypos;
-    Button(String name, Tab _tab, int _xsize, int _ysize, int _xpos, int _ypos){
-    super(name, _tab);
+    private Type type;
+    public static enum Type{
+    PLAY,RULES,CONFIRM,CANCEL, RIGHT, LEFT    
+    }
+    Button(Type _type,int _xpos, int _ypos, int _xsize, int _ysize){
+    type = _type;
     xsize = _xsize;
     ysize = _ysize;
     xpos = _xpos;
@@ -19,14 +23,57 @@ public class Button extends Page {
     public boolean getActive(){
         return isActive;
     }
-    public void pressed(){
-        if(isActive){
-            
+    public Page pressed(Page ptr){
+        System.out.println("pressed");
+        isActive = true;
+        
+        if(ptr.getTab() == Page.Tab.MENU){
+            if(type == Type.PLAY){
+                Board.changeActive(true);
+                ptr = Page.GetPage(Page.Tab.PLAY);
+           
+            }
+        
+            else if (type == Type.RULES){
+                ptr = Page.GetPage(Page.Tab.RULES);
+            }
         }
+        else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
+        if(type == Type.RIGHT){
+            Page.ChangePreviewIndex(1);
+        }
+        else if(type == Type.LEFT){
+            Page.ChangePreviewIndex(-1);
+        }
+        
+        }
+        else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
+            if(type == Type.RIGHT){
+                
+            }
+            if(type == Type.LEFT){
+                
+            }
+        }
+        return ptr;
     }
-    public void drawHitBox(Graphics2D g){
-        g.setColor(Color.red);
-        g.drawRect(xpos, ypos, xsize, ysize);
+    int getXPos(){
+        return xpos;
+    }
+    int getYPos(){
+        return ypos;
+    }
+    int getXSize(){
+        return xsize;
+    }
+    int getYSize(){
+        return ysize;
+    }
+    int getXPos2(){
+        return(xpos + xsize); 
+    }
+    int getYPos2(){
+        return(ypos + ysize); 
     }
     
 }
