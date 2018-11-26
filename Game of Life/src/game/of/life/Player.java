@@ -3,6 +3,8 @@ import java.awt.*;
 public class Player {
     
     final private static int numPlayers = 4;
+    private static Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
+
     private Image car; 
     private int moves;
     private static Player currPlayer;
@@ -66,6 +68,9 @@ public class Player {
     }
     public int getCol(){
         return currCol;
+    }
+    public static Image[] getCarList(){
+        return cars;
     }
     public void update(int row, int col){
         currRow = row;

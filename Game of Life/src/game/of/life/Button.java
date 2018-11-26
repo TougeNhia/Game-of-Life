@@ -11,7 +11,7 @@ public class Button {
     private boolean isActive;
     private Type type;
     public static enum Type{
-    PLAY,RULES,CONFIRM,CANCEL    
+    PLAY,RULES,CONFIRM,CANCEL, RIGHT, LEFT    
     }
     Button(Type _type,int _xpos, int _ypos, int _xsize, int _ysize){
     type = _type;
@@ -24,12 +24,22 @@ public class Button {
         return isActive;
     }
     public Page pressed(Page ptr){
+        System.out.println("pressed");
         isActive = true;
         if(type == Type.PLAY){
             Board.changeActive(true);
             ptr = Page.GetPage(Page.Tab.PLAY);
+           
+        }
+        if(ptr.getTab() == Page.Tab.PLAYERSELECT){
+        if(type == Type.RIGHT){
+            Page.ChangePreviewIndex(1);
+        }
+        else if(type == Type.LEFT){
+            Page.ChangePreviewIndex(-1);
         }
         
+        }
         return ptr;
     }
     int getXPos(){
@@ -44,9 +54,11 @@ public class Button {
     int getYSize(){
         return ysize;
     }
-    public void drawHitBox(Graphics2D g){
-        g.setColor(Color.red);
-        g.drawRect(xpos, ypos, xsize, ysize);
+    int getXPos2(){
+        return(xpos + xsize); 
+    }
+    int getYPos2(){
+        return(ypos + ysize); 
     }
     
 }

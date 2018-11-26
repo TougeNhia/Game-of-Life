@@ -13,16 +13,18 @@ public class GameOfLife extends JFrame implements Runnable {
     Image image;
     Graphics2D g;
     private int timeCount;
-    Image car;
+    Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
     Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"));
     Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
-    Player plr3 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"));
-    Player plr4 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png"));
-    
-    Page menu = Page.Create(Page.Tab.MENU, Toolkit.getDefaultToolkit().getImage("./Menu.jpg"));
+    Player plr3;
+    Player plr4;
     Page ingame = Page.Create(Page.Tab.PLAY);
-    Button playButton = menu.createButton(Button.Type.PLAY,Window.getX(0),Window.getY(0),Window.getX(25),Window.getY(85));
-    
+    Page playerselect = Page.Create(Page.Tab.PLAYERSELECT,Toolkit.getDefaultToolkit().getImage("./Player Select.png" ));
+    Page menu = Page.Create(Page.Tab.MENU, Toolkit.getDefaultToolkit().getImage("./Menu Screen.png"));
+
+    Button playButton = menu.createButton(Button.Type.PLAY,18,389,295,130);
+    Button rightArrow = playerselect.createButton(Button.Type.RIGHT,721,262,200,142);
+    Button leftArrow = playerselect.createButton(Button.Type.LEFT,255,262,200,142);
     
     
     public static void main(String[] args) {
@@ -31,6 +33,8 @@ public class GameOfLife extends JFrame implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
+        System.out.println(Window.WINDOW_WIDTH);
+        System.out.println(Window.WINDOW_HEIGHT);
     }
 
     public GameOfLife() {
@@ -39,6 +43,7 @@ public class GameOfLife extends JFrame implements Runnable {
             public void mousePressed(MouseEvent e) {
                 
                 if (e.BUTTON1 == e.getButton() ) {
+                    System.out.println((e.getX() - Window.getX(0)) + " , " + (e.getY() - Window.getY(0)));
                     Board.AddTokenPixel(e.getX() - Window.getX(0),
                     e.getY() - Window.getY(0));  
                     if(Board.detectSpinner(e.getX() - Window.getX(0),
@@ -107,17 +112,18 @@ public class GameOfLife extends JFrame implements Runnable {
             
         }
 //fill background
-        
-        g.setColor(Color.cyan);
-        g.fillRect(0, 0, Window.xsize, Window.ysize);
-
+//        
+//        g.setColor(Color.cyan);
+//        g.fillRect(0, 0, Window.xsize, Window.ysize);
+        Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("Background.png"), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
+      
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
         int y[] = {Window.getY(0), Window.getY(0), Window.getY(Window.getHeight2()), Window.getY(Window.getHeight2()), Window.getY(0)};
 //fill border
         g.setColor(Color.white);
         g.fillPolygon(x, y, 4);
 // draw border
-        g.setColor(Color.red);
+        g.setColor(Color.black);
         g.drawPolyline(x, y, 5);
 
         if (animateFirstTime) {

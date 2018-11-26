@@ -7,6 +7,9 @@ public class CarToken {
     public Player slots[] = new Player[Player.getNumPlayers()];
     private Player car;
     private boolean eventCard;
+    private boolean layered;
+    private Player.Dir dir;
+    Player.Dir dir2;
     Type type;
     public static enum Type{ 
         MOVE, LAYERED
@@ -17,6 +20,20 @@ public class CarToken {
         for(int i=0;i<slots.length;i++)
             slots[i] = null;
     }
+    CarToken(Type _type, Player.Dir _dir){
+        dir = _dir;
+        type = _type;
+        for(int i=0;i<slots.length;i++)
+            slots[i] = null;
+    }
+    CarToken(Type _type, Player.Dir _dir, Player.Dir _dir2){
+        dir = _dir;
+        dir2 = _dir2;
+        type = _type;
+        for(int i=0;i<slots.length;i++)
+            slots[i] = null;
+    }
+    
     public void draw(Graphics2D g,int row,int column,int xdelta,int ydelta) {
         g.setColor(color); 
         g.fillRect(Window.getX(column*xdelta),Window.getY(row*ydelta),xdelta,ydelta); 

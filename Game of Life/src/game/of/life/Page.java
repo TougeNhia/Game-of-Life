@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author 146004429
  */
 public class Page {
+private static int previewIndex;
 private Image image;
 private ArrayList<Button> buttons = new ArrayList<Button>();
 private static ArrayList<Page>pages = new ArrayList<Page>();
@@ -43,7 +44,7 @@ public Image getImage(){
 public static void detect(int xpixel, int ypixel){
     
         for(Button ptr : currPage.buttons){
-            if(xpixel >= ptr.getXPos() && xpixel <= ptr.getXSize() && ypixel >= ptr.getYPos() && ypixel <= ptr.getYSize()) 
+            if(xpixel >= ptr.getXPos() && xpixel <= ptr.getXPos2() && ypixel >= ptr.getYPos() && ypixel <= ptr.getYPos2()) 
                 currPage = ptr.pressed(currPage);
         }
     
@@ -60,14 +61,26 @@ public static Page Create(Tab _type){
     currPage = ptr;
     return ptr;
 }
- static void loadPage(Graphics2D g,Page page){
+ static void loadPage(Graphics2D g,Page page){    
+     
  if(page.type == Tab.MENU){
-     Drawing.drawImage(page.getImage(), Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1, 1);
-
+     Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
 //comment this out later
      g.setColor(Color.red);
      for(Button ptr : page.buttons)    
        g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+ }
+ else if(page.type == Tab.PLAY){
+     
+ }
+ else if(page.type == Tab.PLAYERSELECT){ 
+     Image list[] = Player.getCarList();
+    Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
+    Drawing.drawImage(list[previewIndex], Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
+     g.setColor(Color.red);
+     for(Button ptr : page.buttons)    
+       g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+ 
  }
      
  }
@@ -83,5 +96,12 @@ public static Page Create(Tab _type){
              return ptr;
      }
      return null;
+ }
+ public Tab getTab(){
+     return type;
+ }
+ public  static void ChangePreviewIndex(int i){
+     if(previewIndex + i < Player.getCarList().length)
+     previewIndex += i;
  }
 }

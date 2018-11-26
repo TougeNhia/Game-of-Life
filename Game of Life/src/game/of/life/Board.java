@@ -8,7 +8,7 @@ public class Board {
     private final static int NUM_COLUMNS = 21;      
     private static CarToken board[][] = new CarToken[NUM_ROWS][NUM_COLUMNS];
     private static boolean showNumbers = true;
-    private static boolean isActive = true;
+    private static boolean isActive = false;
     //private static boolean board[][];
         public static void Reset(){
             new Board();
@@ -26,8 +26,8 @@ public class Board {
             board[2][0] = new CarToken(CarToken.Type.MOVE, false);   board[2][1] = null;  board[2][2] = new CarToken(CarToken.Type.MOVE, false);   board[2][3] = new CarToken(CarToken.Type.MOVE, false);   board[2][4] = new CarToken(CarToken.Type.MOVE, false);   board[2][5] = null;  board[2][6] = new CarToken(CarToken.Type.MOVE, false);   board[2][7] = new CarToken(CarToken.Type.MOVE, false);   board[2][8] = new CarToken(CarToken.Type.MOVE, false);   board[2][9] = null;  board[2][10] = new CarToken(CarToken.Type.MOVE, false);   board[2][11] = null;  board[2][12] = null;  board[2][13] = null;  board[2][14] = new CarToken(CarToken.Type.MOVE, false);   board[2][15] = null;  board[2][16] = null;  board[2][17] = new CarToken(CarToken.Type.MOVE, false);   board[2][18] = null;   board[2][19] = null;  board[2][20] = new CarToken(CarToken.Type.MOVE, false);
             board[3][0] = new CarToken(CarToken.Type.MOVE, false);   board[3][1] = null;  board[3][2] = new CarToken(CarToken.Type.MOVE, false);   board[3][3] = null;  board[3][4] = new CarToken(CarToken.Type.MOVE, false);   board[3][5] = null;  board[3][6] = new CarToken(CarToken.Type.MOVE, false);   board[3][7] = null;  board[3][8] = new CarToken(CarToken.Type.MOVE, false);   board[3][9] = null;  board[3][10] = new CarToken(CarToken.Type.MOVE, false);   board[3][11] = null;  board[3][12] = null;  board[3][13] = null;  board[3][14] = new CarToken(CarToken.Type.MOVE, false);   board[3][15] = new CarToken(CarToken.Type.MOVE, false);   board[3][16] = new CarToken(CarToken.Type.MOVE, false);   board[3][17] = new CarToken(CarToken.Type.MOVE, false);   board[3][18] = null;   board[3][19] = null;  board[3][20] = new CarToken(CarToken.Type.MOVE, false);
             board[4][0] = new CarToken(CarToken.Type.MOVE, false);   board[4][1] = null;  board[4][2] = new CarToken(CarToken.Type.MOVE, false);   board[4][3] = null;  board[4][4] = new CarToken(CarToken.Type.MOVE, false);   board[4][5] = null;  board[4][6] = new CarToken(CarToken.Type.MOVE, false);   board[4][7] = null;  board[4][8] = new CarToken(CarToken.Type.MOVE, false);   board[4][9] = null;  board[4][10] = new CarToken(CarToken.Type.MOVE, false);   board[4][11] = null;  board[4][12] = null;  board[4][13] = null;  board[4][14] = null;  board[4][15] = null;  board[4][16] = null;  board[4][17] = null;  board[4][18] = new CarToken(CarToken.Type.MOVE, false);    board[4][19] = new CarToken(CarToken.Type.MOVE, false);   board[4][20] = new CarToken(CarToken.Type.MOVE, false);
-            board[5][0] = new CarToken(CarToken.Type.MOVE, false);   board[5][1] = null;  board[5][2] = new CarToken(CarToken.Type.MOVE, false);   board[5][3] = null;  board[5][4] = new CarToken(CarToken.Type.MOVE, false);   board[5][5] = null;  board[5][6] = new CarToken(CarToken.Type.MOVE, false);   board[5][7] = null;  board[5][8] = new CarToken(CarToken.Type.MOVE, false);   board[5][9] = null;  board[5][10] = new CarToken(CarToken.Type.MOVE, false);   board[5][11] = null;  board[5][12] = null;  board[5][13] = null;  board[5][14] = null;  board[5][15] = null;  board[5][16] = null;  board[5][17] = null;  board[5][18] = new CarToken(CarToken.Type.MOVE, false);    board[5][19] = null;  board[5][20] = new CarToken(CarToken.Type.MOVE, false);
-            board[6][0] = new CarToken(CarToken.Type.MOVE, false);   board[6][1] = null;  board[6][2] = new CarToken(CarToken.Type.MOVE, false);   board[6][3] = null;  board[6][4] = new CarToken(CarToken.Type.MOVE, false);   board[6][5] = new CarToken(CarToken.Type.MOVE, false);   board[6][6] = new CarToken(CarToken.Type.MOVE, false);   board[6][7] = null;  board[6][8] = new CarToken(CarToken.Type.MOVE, false);   board[6][9] = null;  board[6][10] = new CarToken(CarToken.Type.MOVE, false);   board[6][11] = null;  board[6][12] = null;  board[6][13] = null;  board[6][14] = null;  board[6][15] = null;  board[6][16] = null;  board[6][17] = new CarToken(CarToken.Type.MOVE, false);   board[6][18] = new CarToken(CarToken.Type.MOVE, false);    board[6][19] = null;  board[6][20] = new CarToken(CarToken.Type.MOVE, false);
+            board[5][0] = new CarToken(CarToken.Type.MOVE, false);   board[5][1] = null;  board[5][2] = new CarToken(CarToken.Type.MOVE, false);   board[5][3] = null;  board[5][4] = new CarToken(CarToken.Type.MOVE, false);   board[5][5] = null;  board[5][6] = new CarToken(CarToken.Type.MOVE, false);   board[5][7] = null;  board[5][8] = new CarToken(CarToken.Type.MOVE, false);   board[5][9] = null;  board[5][10] = new CarToken(CarToken.Type.MOVE, false);   board[5][11] = null;  board[5][12] = null;  board[5][13] = null;  board[5][14] = null;  board[5][15] = null;  board[5][16] = null;  board[5][17] = null;  board[5][18] = new CarToken(CarToken.Type.MOVE, Player.Dir.UP);    board[5][19] = null;  board[5][20] = new CarToken(CarToken.Type.MOVE, false);
+            board[6][0] = new CarToken(CarToken.Type.MOVE, false);   board[6][1] = null;  board[6][2] = new CarToken(CarToken.Type.MOVE, false);   board[6][3] = null;  board[6][4] = new CarToken(CarToken.Type.MOVE, false);   board[6][5] = new CarToken(CarToken.Type.MOVE, false);   board[6][6] = new CarToken(CarToken.Type.MOVE, false);   board[6][7] = null;  board[6][8] = new CarToken(CarToken.Type.MOVE, false);   board[6][9] = null;  board[6][10] = new CarToken(CarToken.Type.MOVE, false);   board[6][11] = null;  board[6][12] = null;  board[6][13] = null;  board[6][14] = null;  board[6][15] = null;  board[6][16] = null;  board[6][17] = new CarToken(CarToken.Type.MOVE, Player.Dir.RIGHT);   board[6][18] = new CarToken(CarToken.Type.MOVE, Player.Dir.UP);    board[6][19] = null;  board[6][20] = new CarToken(CarToken.Type.MOVE, false);
             board[7][0] = new CarToken(CarToken.Type.MOVE, false);   board[7][1] = null;  board[7][2] = new CarToken(CarToken.Type.MOVE, false);   board[7][3] = null;  board[7][4] = null;  board[7][5] = null;  board[7][6] = new CarToken(CarToken.Type.MOVE, false);   board[7][7] = new CarToken(CarToken.Type.MOVE, false);   board[7][8] = new CarToken(CarToken.Type.MOVE, false);   board[7][9] = null;  board[7][10] = new CarToken(CarToken.Type.MOVE, false);   board[7][11] = null;  board[7][12] = null;  board[7][13] = null;  board[7][14] = null;  board[7][15] = null;  board[7][16] = null;  board[7][17] = new CarToken(CarToken.Type.MOVE, false);   board[7][18] = new CarToken(CarToken.Type.MOVE, false);    board[7][19] = null;  board[7][20] = new CarToken(CarToken.Type.MOVE, false);
             board[8][0] = new CarToken(CarToken.Type.MOVE, false);   board[8][1] = new CarToken(CarToken.Type.MOVE, false);   board[8][2] = new CarToken(CarToken.Type.MOVE, false);   board[8][3] = new CarToken(CarToken.Type.MOVE, false);   board[8][4] = new CarToken(CarToken.Type.MOVE, false);   board[8][5] = null;  board[8][6] = null;  board[8][7] = null;  board[8][8] = null;  board[8][9] = null;  board[8][10] = new CarToken(CarToken.Type.MOVE, false);   board[8][11] = null;  board[8][12] = null;  board[8][13] = null;  board[8][14] = null;  board[8][15] = null;  board[8][16] = null;  board[8][17] = null;  board[8][18] = new CarToken(CarToken.Type.MOVE, false);    board[8][19] = null;  board[8][20] = new CarToken(CarToken.Type.MOVE, false);
             board[9][0] = null;  board[9][1] = null;  board[9][2] = new CarToken(CarToken.Type.MOVE, false);   board[9][3] = null;  board[9][4] = new CarToken(CarToken.Type.MOVE, false);   board[9][5] = null;  board[9][6] = null;  board[9][7] = null;  board[9][8] = null;  board[9][9] = null;  board[9][10] = new CarToken(CarToken.Type.MOVE, false);   board[9][11] = null;  board[9][12] = null;  board[9][13] = null;  board[9][14] = null;  board[9][15] = null;  board[9][16] = null;  board[9][17] = null;  board[9][18] = new CarToken(CarToken.Type.MOVE, false);    board[9][19] = new CarToken(CarToken.Type.MOVE, false);   board[9][20] = new CarToken(CarToken.Type.MOVE, false);
@@ -40,7 +40,9 @@ public class Board {
             isActive = b;
         }
         public static void AddTokenPixel(int xpixel,int ypixel) {
-
+            
+        Page.GetCurrPage().detect(xpixel + Window.getX(0),ypixel + Window.getY(0));    
+            
         if (xpixel < 0 || xpixel > Window.getWidth2() || ypixel < 0 || 
            ypixel > Window.getHeight2())
             return;
@@ -62,6 +64,7 @@ public class Board {
             currCol++;
             currXVal += xdelta;
         }
+
         System.out.println(currRow + " " + currCol);
         
         return;
@@ -103,11 +106,11 @@ public class Board {
         
         
                 g.setColor(Color.black);
-        g.setFont(new Font("Arial",Font.PLAIN,30));
-        g.drawString("Player 1 =", 50, 60);
-        g.drawString("Player 2 =", 300, 60);
-        g.drawString("Player 3 =", 600, 60);
-        g.drawString("Player 4 =", 875, 60);
+        g.setFont(new Font("Arial",Font.PLAIN,20));
+        g.drawString("Player 1 =", 25, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 2 =", 275, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 3 =", 575, Window.getY(Window.getHeight2())+30);
+        g.drawString("Player 4 =", 850, Window.getY(Window.getHeight2())+30);
         Image board =  Toolkit.getDefaultToolkit().getImage("./board.png");    
         Drawing.drawImage(board, Window.getX(Window.getWidth2()/2), Window.getY(Window.getHeight2()/2), 0.0, 1.0, 1.0);
 //        Image playerCar1 = Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png");  
@@ -115,13 +118,13 @@ public class Board {
         Image playerCar3 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png");  
         Image playerCar4 = Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png");  
 //        if (getCurrentPlayer.jobs)
-        Drawing.drawImage(Player.getPlayer(0).getCar(), Window.getX(xdelta * Player.getPlayer(0).getCol() + 26), Window.getY(ydelta * Player.getPlayer(0).getRow() + 13), 0.0, 1.0, 1.0);
-        Drawing.drawImage(Player.getPlayer(1).getCar(), Window.getX(xdelta * Player.getPlayer(1).getCol() + 26), Window.getY(ydelta * Player.getPlayer(1).getRow() + 39), 0.0, 1.0, 1.0);
+        Drawing.drawImage(Player.getPlayer(0).getCar(), Window.getX(xdelta * Player.getPlayer(0).getCol() + 13), Window.getY(ydelta * Player.getPlayer(0).getRow() + 13), 0.0, 0.5, 0.5);
+        Drawing.drawImage(Player.getPlayer(1).getCar(), Window.getX(xdelta * Player.getPlayer(1).getCol() + 39), Window.getY(ydelta * Player.getPlayer(1).getRow() + 13), 0.0, 0.5, 0.5);
         Drawing.drawImage(playerCar3, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 13), 0.0, 1.0, 1.0);
         Drawing.drawImage(playerCar4, Window.getX(xdelta * 17 + 26), Window.getY(ydelta * 7 + 39), 0.0, 1.0, 1.0);
         
         
-         Spinner.draw(g);
+         
  //Draw the grid.
         g.setColor(Color.black);
         for (int zi = 1;zi<NUM_ROWS;zi++)
@@ -147,7 +150,9 @@ public class Board {
                         Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
             }
         }
+        Spinner.draw(g);
         }
+          
     }
    
 //        public static void Move(){
