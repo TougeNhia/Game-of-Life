@@ -59,26 +59,28 @@ public class Button {
             }
             else if (type == Type.CONFIRM){
                 Image list[] = Player.getCarList();
-                int i = 0;
-                while (i < list.length){
-                    if(list[i] == null)
-                        break;
-                        i++;
-                }
+//                int i = 0;
+//                while (i < list.length){
+//                    if(list[i] == null)
+//                        break;
+//                        i++;
+//                }
                 
-                if(i <= 4){
+                if(Page.getPlayerIndex() < Player.getNumPlayers()){
                 Player player = Player.addPlayer(list[Page.getPreviewIndex()]);
                 player.setCar(list[Page.getPreviewIndex()]);
                 Page.ChangePlayerIndex(1);
                 }
-            }
+                }            
             else if(type == Type.PLAY){
                 Player.Merge();
                 Board.changeActive(true);
                 ptr = Page.GetPage(Page.Tab.PLAY);
                 GameOfLife.setStart(true);
             }
-        }
+            }
+
+        
         //closing an event card
         else if(ptr.getTab() == Page.Tab.PLAY){
             if(type == Type.CANCEL){

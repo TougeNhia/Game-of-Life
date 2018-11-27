@@ -26,14 +26,12 @@ public class Player {
         currPlayer = players[0];
     }
     public static Player addPlayer(Image _car){
-       Player ptr = new Player(_car);
-//       for(int i=0; i<numPlayers;i++){
-//           if(players[i] == null){
-//               players[i] = ptr; 
-//               break;
-//           }
-//       }    
-    plrList.add(ptr);
+       Player ptr = new Player(_car);  
+    if(plrList.size() >= numPlayers){
+        return null;
+    }
+    else
+    plrList.add(ptr);    
     return ptr;
     }  
     

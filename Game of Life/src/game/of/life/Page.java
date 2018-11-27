@@ -183,7 +183,7 @@ public static Page Create(Tab _type){
  public static void SetPage(Page page){
      currPage = page;
  }
- public int getPlayerIndex(){
+ public static int getPlayerIndex(){
      return selectedPlayer;
  }
  public static int getPreviewIndex(){
@@ -204,7 +204,7 @@ public static Page Create(Tab _type){
      previewIndex += i;
  }
   public  static void ChangePlayerIndex(int i){
-     if( selectedPlayer + i >= 0 && selectedPlayer + i < Player.getCarList().length)
+     if( selectedPlayer + i >= 0 )
      selectedPlayer += i;
  }
 public  static void SetPlayerIndex(int i){
