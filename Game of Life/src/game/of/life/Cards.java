@@ -65,11 +65,17 @@ public class Cards {
                         "idea. You go to court and must\n" +
                         "pay a lawyer to defend you.\n" +
                         "(Lose $,1,500)",-1500,BAD,LIN));
-        events.add(new Cards("Millionaire!",
-                        "You decide to buy a\n" +
-                        "lottery ticket. You surprisingly\n" +
-                        "win the biggest prize\n" +
-                        "(Win $1,000,000)",+1000000,GOOD,LIN));
+        // Need statement to make it less frequent
+//        events.add(new Cards("Millionaire!",
+//                        "You decide to buy a\n" +
+//                        "lottery ticket. You surprisingly\n" +
+//                        "win the biggest prize.\n" +
+//                        "(Win $1,000,000)",+1000000,GOOD,LIN));
+        events.add(new Cards("Up the ladder",
+                        "Your manager decides\n" +
+                        "to give you a promotion\n" +
+                        "due to your hard work.\n" +
+                        "(Gain +%20)",1.2,GOOD,MULT));
     }
     public static void Reset(){
         career.clear();
