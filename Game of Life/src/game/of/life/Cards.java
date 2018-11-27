@@ -40,13 +40,13 @@ public class Cards {
                         + "\n notorious penny pincher,"
                         + "\n however he took more"
                         + "\n than a few pennies."
-                        + "\n (Lose $1000)",-1000,BAD,LIN));
+                        + "\n (Lose $1,000)",-1000,BAD,LIN));
         events.add(new Cards("Lucky Day",
                 "The notorious penny pincher\n "
                         + "has become the penny pinched,"
                         + "\n as you pick up the cash that\n he had stolen (and misplaced)"
                         + "\n from a poor victim."
-                        + "\n (Gain $1000)",1000,GOOD,LIN));
+                        + "\n (Gain $1,000)",1000,GOOD,LIN));
         events.add(new Cards("Investful Stocks",
                         "After conciding with your\n" +
                         "basic economics books\n" +
@@ -57,14 +57,19 @@ public class Cards {
                         "While you were ice skating \n" +
                         "you slipped and broke a \n" +
                         "bone. You must go to the ER.\n" +
-                        "(Lose $2000)",1.1,BAD,LIN));
+                        "(Lose $2,000)",-2000,BAD,LIN));
         events.add(new Cards("Law Suit",
                         "You invent a new product \n" +
                         "and unfortunately someone \n" +
                         "sues you for 'stealing' their\n" +
                         "idea. You go to court and must\n" +
                         "pay a lawyer to defend you.\n" +
-                        "(Lose $1500)",1.1,BAD,LIN));
+                        "(Lose $,1,500)",-1500,BAD,LIN));
+        events.add(new Cards("Millionaire!",
+                        "You decide to buy a\n" +
+                        "lottery ticket. You surprisingly\n" +
+                        "win the biggest prize\n" +
+                        "(Win $1,000,000)",+1000000,GOOD,LIN));
     }
     public static void Reset(){
         career.clear();
