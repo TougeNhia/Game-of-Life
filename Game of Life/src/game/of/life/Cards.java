@@ -83,6 +83,11 @@ public class Cards {
                         "get drunk and misplace\n" +
                         "your wallet with your credit card.\n" +
                         "(Lose $1,500)",-1500,BAD,LIN));
+        events.add(new Cards("Demoted",
+                        "Your manager decides\n" +
+                        "to demote you due to\n" +
+                        "your lack of effort.\n" +
+                        "(Lose -%20)",0.80,BAD,MULT));
     }
     public static void Reset(){
         career.clear();
