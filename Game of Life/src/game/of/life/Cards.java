@@ -35,14 +35,14 @@ public class Cards {
        career.add(new Cards("Steals items and money", 100, 1000, "Theif",UNSTABLE));
         
        events.add(new Cards("Robbed",
-                "you were unlucky enough"
+                         "you were unlucky enough"
                         + "\n to be jumped by the"
                         + "\n notorious penny pincher,"
                         + "\n however he took more"
                         + "\n than a few pennies."
                         + "\n (Lose $1,000)",-1000,BAD,LIN));
         events.add(new Cards("Lucky Day",
-                "The notorious penny pincher\n "
+                          "The notorious penny pincher\n "
                         + "has become the penny pinched,"
                         + "\n as you pick up the cash that\n he had stolen (and misplaced)"
                         + "\n from a poor victim."
@@ -88,6 +88,19 @@ public class Cards {
                         "to demote you due to\n" +
                         "your lack of effort.\n" +
                         "(Lose -%20)",0.80,BAD,MULT));
+        events.add(new Cards("Lucky Day",
+                         "You find a brief case with\n "
+                        + "$5,000. You take it to the"
+                        + "\n bank and make sure it is in"
+                        + "\n your bank account."
+                        + "\n (Gain $5,000)",5000,GOOD,LIN));
+        events.add(new Cards("Promotion",
+                        "Your manager decides\n" +
+                        "to retires and nominates\n" +
+                        "you to be the next manager\n" +
+                        "thanks to your close relation\n" +
+                        "to the manager\n" +
+                        "(Gain +%50)",1.5,GOOD,MULT));
     }
     public static void Reset(){
         career.clear();
