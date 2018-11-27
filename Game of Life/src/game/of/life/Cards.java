@@ -30,8 +30,8 @@ public class Cards {
        career.add(new Cards("Design clothing", 63670, "Fashion Deigner"));
        career.add(new Cards("Diagnoze diseases and precribes meds", 187200 , 500, "Doctor",DEGREE));
        career.add(new Cards("Very well known", 83342, "Celebrity"));
-       career.add(new Cards("Collect taxes", 67190 , 4000, "Accountant",DEGREE));
-       career.add(new Cards("", 115820 , 1000, "Lawyer",DEGREE));
+       career.add(new Cards("Collect taxes and deals with  finances", 67190 , 4000, "Accountant",DEGREE));
+       career.add(new Cards("Studies and practices laws", 115820 , 1000, "Lawyer",DEGREE));
        career.add(new Cards("Steals items and money", 100, 1000, "Theif",UNSTABLE));
         
        events.add(new Cards("Robbed",
