@@ -96,7 +96,7 @@ public class Cards {
                         + "\n (Gain $5,000)",5000,GOOD,LIN));
         events.add(new Cards("Promotion",
                         "Your manager decides\n" +
-                        "to retires and nominates\n" +
+                        "to retire and nominates\n" +
                         "you to be the next manager\n" +
                         "thanks to your close relation\n" +
                         "to the manager\n" +
