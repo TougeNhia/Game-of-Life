@@ -23,16 +23,16 @@ public class Cards {
     private static Cards event;
     public static void Create(){
        career.add(new Cards("Rising painter", 1000, 6500, "Artist",UNSTABLE));
-       career.add(new Cards("You do sports I guess", 79063, "Athlete"));
+       career.add(new Cards("You play sports", 79063, "Athlete"));
        career.add(new Cards("Aerospace engineer", 107830, "Engineer"));
-       career.add(new Cards("All you do is narrate through a powerpoint, thats cool I guess", 58030, 3500, "Professor",DEGREE));
-       career.add(new Cards("Sales variety of things", 42153, "Salesman"));
-       career.add(new Cards("Not well known", 63670, "Fashion Deigner"));
-       career.add(new Cards("Preforms surgery and helps cure others ", 187200 , 500, "Doctor",DEGREE));
-       career.add(new Cards("Very well known celebrity", 83342, "Celebrity"));
-       career.add(new Cards("You do something with accounts", 67190 , 4000, "Accountant",DEGREE));
-       career.add(new Cards("It's either sue or get sued ", 115820 , 1000, "Lawyer",DEGREE));
-       career.add(new Cards("Go around stealing the goods of others.", 100, 1000, "Theif",UNSTABLE));
+       career.add(new Cards("All you do is narrate through a powerpoint", 58030, 3500, "Professor",DEGREE));
+       career.add(new Cards("Advertise and promote items", 42153, "Salesman"));
+       career.add(new Cards("Design clothing", 63670, "Fashion Deigner"));
+       career.add(new Cards("Diagnoze diseases and precribes meds", 187200 , 500, "Doctor",DEGREE));
+       career.add(new Cards("Very well known", 83342, "Celebrity"));
+       career.add(new Cards("Collect taxes and deals with  finances", 67190 , 4000, "Accountant",DEGREE));
+       career.add(new Cards("Studies and practices laws", 115820 , 1000, "Lawyer",DEGREE));
+       career.add(new Cards("Steals items and money", 100, 1000, "Theif",UNSTABLE));
         
        events.add(new Cards("Robbed",
                 "you were unlucky enough"
@@ -48,11 +48,12 @@ public class Cards {
                         + "\n from a poor victim."
                         + "\n (Gain $1000)",1000,GOOD,LIN));
         events.add(new Cards("Investful Stocks",
-"After conciding with your\n" +
-"basic economics books\n" +
-" for an hour, your prodigal stocks\n" +
-" has reaped in quite a profit\n" +
-"(Gain +%10 money)",1.1,GOOD,MULT));
+
+                        "After conciding with your\n" +
+                        "basic economics books\n" +
+                        " for an hour, your prodigal stocks\n" +
+                        " has reaped in quite a profit\n" +
+                        "(Gain +%10 money)",1.1,GOOD,MULT));
     }
     public static void Reset(){
         career.clear();
