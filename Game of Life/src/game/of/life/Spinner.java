@@ -10,7 +10,7 @@ public class Spinner {
     private final static int NUM_COLUMNS = 21; 
     private static int sec;
     private static int move;
-    private static double rot = 67.5;
+    private static double rot;
     private static boolean on = false;
     private int xpos  = Window.getX(xdelta * 14)- (Drawing.getImageWidth(spinner)/2);
     private int ypos = Window.getY(ydelta * 7)- (Drawing.getImageHeight(spinner)/2);
@@ -24,13 +24,13 @@ public class Spinner {
      public static void Reset(){
         sec = 0;
         move = 0;
-        rot = 67.5;
+        rot = 90;
         on = false;    
      }
     Spinner(){
         sec = 0;
         move = 0;
-        rot = 67.5;
+        rot = 90;
         on = false;
     }
     public static void setOn(){
@@ -40,6 +40,13 @@ public class Spinner {
     public static int Spin(){
         sec = (int)(Math.random()* 5);
         return sec;
+    }
+    public static void testSpin(){
+        
+        int moves = 10;
+        Player.getCurrentPlayer().changeMoves(moves);
+        Player.getCurrentPlayer().setSpun(true);
+        System.out.println("cheated");
     }
     public static void MoveArrow(int _timecount){
         if(Player.getCurrentPlayer().hasSpun())

@@ -48,7 +48,10 @@ public class Drawing {
         g.rotate(-rot  * Math.PI/180.0);
         g.translate(-xpos,-ypos);
     }
-    
+    public static void drawString(Graphics2D g, String text, int x, int y) {
+    for (String line : text.split("\n"))
+        g.drawString(line, x, y += g.getFontMetrics().getHeight());
+}
     
 }
 

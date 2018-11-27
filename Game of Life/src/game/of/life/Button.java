@@ -25,11 +25,11 @@ public class Button {
     public Page pressed(Page ptr){
         System.out.println("pressed");
         isActive = true;
-        
         if(ptr.getTab() == Page.Tab.MENU){
             if(type == Type.PLAY){
-                Board.changeActive(true);
-                ptr = Page.GetPage(Page.Tab.PLAY);
+//                Board.changeActive(true);
+//                ptr = Page.GetPage(Page.Tab.PLAY);
+                  ptr = Page.GetPage(Page.Tab.PLAYERSELECT);
             }
             else if (type == Type.RULES){
                 ptr = Page.GetPage(Page.Tab.RULES);
@@ -48,19 +48,33 @@ public class Button {
         }
         
         else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
-        if(type == Type.RIGHT){
-            Page.ChangePreviewIndex(1);
-        }
-        else if(type == Type.LEFT){
-            Page.ChangePreviewIndex(-1);
-        }
-        }
-        else if(ptr.getTab() == Page.Tab.PLAYERSELECT){
+            if(type == Type.CANCEL){
+                ptr =  Page.GetPage(Page.Tab.MENU);
+            }    
             if(type == Type.RIGHT){
-                
+                Page.ChangePreviewIndex(1);
             }
-            if(type == Type.LEFT){
-                
+            else if(type == Type.LEFT){
+                Page.ChangePreviewIndex(-1);
+            }
+            else if (type == Type.CONFIRM){
+                Image list[] = Player.getCarList();
+                Player player = Player.addPlayer(list[Page.getPreviewIndex()]);
+                player.setCar(list[Page.getPreviewIndex()]);
+                Page.ChangePlayerIndex(1);
+            }
+            else if(type == Type.PLAY){
+                Player.Merge();
+                Board.changeActive(true);
+                ptr = Page.GetPage(Page.Tab.PLAY);
+                GameOfLife.setStart(true);
+            }
+        }
+        //closing an event card
+        else if(ptr.getTab() == Page.Tab.PLAY){
+            if(type == Type.CANCEL){
+                Page.eventStat(false);
+                Board.pause = false;
             }
         }
         return ptr;

@@ -12,7 +12,7 @@ public class CarToken {
     private Player.Dir dir2;
     Type type;
     public static enum Type{ 
-        MOVE, LAYERED,FORK
+        MOVE, LAYERED,FORK,STOP,ACADEMIC
     };
     CarToken(Type _type, boolean _eventCard){
         eventCard = _eventCard;
@@ -66,7 +66,7 @@ public class CarToken {
     }
     public boolean checkSlots(){
        for(Player ptr : slots){
-        if(ptr != null)
+        if(ptr == null)
             return true;
        }
         return false;
