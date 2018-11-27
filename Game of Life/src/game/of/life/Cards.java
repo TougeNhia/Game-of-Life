@@ -64,7 +64,7 @@ public class Cards {
                         "sues you for 'stealing' their\n" +
                         "idea. You go to court and must\n" +
                         "pay a lawyer to defend you.\n" +
-                        "(Lose $,1,500)",-1500,BAD,LIN));
+                        "(Lose $1,500)",-1500,BAD,LIN));
         // Need statement to make it less frequent
 //        events.add(new Cards("Millionaire!",
 //                        "You decide to buy a\n" +
@@ -76,6 +76,13 @@ public class Cards {
                         "to give you a promotion\n" +
                         "due to your hard work.\n" +
                         "(Gain +%20)",1.2,GOOD,MULT));
+        events.add(new Cards("Drunk",
+                        "You decide to go to the\n" +
+                        "bar with your buddies.\n" +
+                        "in the process, you all\n" +
+                        "get drunk and misplace\n" +
+                        "your wallet with your credit card.\n" +
+                        "(Lose $1,500)",-1500,BAD,LIN));
     }
     public static void Reset(){
         career.clear();
