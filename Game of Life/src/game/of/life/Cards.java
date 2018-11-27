@@ -35,34 +35,72 @@ public class Cards {
        career.add(new Cards("Steals items and money", 100, 1000, "Theif",UNSTABLE));
         
        events.add(new Cards("Robbed",
-                "you were unlucky enough"
+                         "you were unlucky enough"
                         + "\n to be jumped by the"
                         + "\n notorious penny pincher,"
                         + "\n however he took more"
                         + "\n than a few pennies."
-                        + "\n (Lose $1000)",-1000,BAD,LIN));
+                        + "\n (Lose $1,000)",-1000,BAD,LIN));
         events.add(new Cards("Lucky Day",
-                "The notorious penny pincher\n "
+                          "The notorious penny pincher\n "
                         + "has become the penny pinched,"
                         + "\n as you pick up the cash that\n he had stolen (and misplaced)"
                         + "\n from a poor victim."
-                        + "\n (Gain $1000)",1000,GOOD,LIN));
+                        + "\n (Gain $1,000)",1000,GOOD,LIN));
         events.add(new Cards("Investful Stocks",
                         "After conciding with your\n" +
                         "basic economics books\n" +
                         " for an hour, your prodigal stocks\n" +
-                        " has reaped in quite a profit\n" +
+                        " has reaped in quite a profit.\n" +
                         "(Gain +%10 money)",1.1,GOOD,MULT));
         events.add(new Cards("Accident",
                         "While you were ice skating \n" +
                         "you slipped and broke a \n" +
-                        "bone. You must go to the ER\n" +
-                        "(Lose $2000)",1.1,BAD,LIN));
+                        "bone. You must go to the ER.\n" +
+                        "(Lose $2,000)",-2000,BAD,LIN));
         events.add(new Cards("Law Suit",
-                        "While you were ice skating \n" +
-                        "you slipped and broke a \n" +
-                        "bone. You must go to the ER\n" +
-                        "(Lose $2000)",1.1,BAD,LIN));
+                        "You invent a new product \n" +
+                        "and unfortunately someone \n" +
+                        "sues you for 'stealing' their\n" +
+                        "idea. You go to court and must\n" +
+                        "pay a lawyer to defend you.\n" +
+                        "(Lose $1,500)",-1500,BAD,LIN));
+        // Need statement to make it less frequent
+//        events.add(new Cards("Millionaire!",
+//                        "You decide to buy a\n" +
+//                        "lottery ticket. You surprisingly\n" +
+//                        "win the biggest prize.\n" +
+//                        "(Win $1,000,000)",+1000000,GOOD,LIN));
+        events.add(new Cards("Up the ladder",
+                        "Your manager decides\n" +
+                        "to give you a promotion\n" +
+                        "due to your hard work.\n" +
+                        "(Gain +%20)",1.2,GOOD,MULT));
+        events.add(new Cards("Drunk",
+                        "You decide to go to the\n" +
+                        "bar with your buddies.\n" +
+                        "in the process, you all\n" +
+                        "get drunk and misplace\n" +
+                        "your wallet with your credit card.\n" +
+                        "(Lose $1,500)",-1500,BAD,LIN));
+        events.add(new Cards("Demoted",
+                        "Your manager decides\n" +
+                        "to demote you due to\n" +
+                        "your lack of effort.\n" +
+                        "(Lose -%20)",0.80,BAD,MULT));
+        events.add(new Cards("Lucky Day",
+                         "You find a brief case with\n "
+                        + "$5,000. You take it to the"
+                        + "\n bank and make sure it is in"
+                        + "\n your bank account."
+                        + "\n (Gain $5,000)",5000,GOOD,LIN));
+        events.add(new Cards("Promotion",
+                        "Your manager decides\n" +
+                        "to retire and nominates\n" +
+                        "you to be the next manager\n" +
+                        "thanks to your close relation\n" +
+                        "to the manager\n" +
+                        "(Gain +%50)",1.5,GOOD,MULT));
     }
     public static void Reset(){
         career.clear();
