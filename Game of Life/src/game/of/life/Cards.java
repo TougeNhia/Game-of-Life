@@ -51,18 +51,20 @@ public class Cards {
                         "After conciding with your\n" +
                         "basic economics books\n" +
                         " for an hour, your prodigal stocks\n" +
-                        " has reaped in quite a profit\n" +
+                        " has reaped in quite a profit.\n" +
                         "(Gain +%10 money)",1.1,GOOD,MULT));
         events.add(new Cards("Accident",
                         "While you were ice skating \n" +
                         "you slipped and broke a \n" +
-                        "bone. You must go to the ER\n" +
+                        "bone. You must go to the ER.\n" +
                         "(Lose $2000)",1.1,BAD,LIN));
         events.add(new Cards("Law Suit",
-                        "While you were ice skating \n" +
-                        "you slipped and broke a \n" +
-                        "bone. You must go to the ER\n" +
-                        "(Lose $2000)",1.1,BAD,LIN));
+                        "You invent a new product \n" +
+                        "and unfortunately someone \n" +
+                        "sues you for 'stealing' their\n" +
+                        "idea. You go to court and must\n" +
+                        "pay a lawyer to defend you.\n" +
+                        "(Lose $1500)",1.1,BAD,LIN));
     }
     public static void Reset(){
         career.clear();
