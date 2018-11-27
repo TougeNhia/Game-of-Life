@@ -53,7 +53,6 @@ public class Cards {
 " for an hour, your prodigal stocks\n" +
 " has reaped in quite a profit\n" +
 "(Gain +%10 money)",1.1,GOOD,MULT));
-        
     }
     public static void Reset(){
         career.clear();

@@ -108,8 +108,9 @@ public static Page Create(Tab _type){
     Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
     Drawing.drawImage(list[previewIndex], Window.WINDOW_WIDTH/2, 2*Window.WINDOW_HEIGHT/5, 0.0, 2, 2);
     if(plist.size() > 0){
-    for(int i= 0;i<plist.size();i++)
+    for(int i= 0;i<plist.size();i++){
         Drawing.drawImage(plist.get(i).getCar(), (1+i)*Window.WINDOW_WIDTH/5, 4*Window.WINDOW_HEIGHT/5, 0.0, 1, 1);
+    }
     }
 //    if(plist.get(0) !=null)
 //    Drawing.drawImage(Player.getPlayer(0).getCar(), Window.WINDOW_WIDTH/5, 4*Window.WINDOW_HEIGHT/5, 0.0, 1, 1);
@@ -124,7 +125,7 @@ public static Page Create(Tab _type){
 //    Drawing.drawImage(Player.getPlayer(3).getCar(), 4*Window.WINDOW_WIDTH/5, 4*Window.WINDOW_HEIGHT/5, 0.0, 1, 1);
     
     g.setFont(new Font("Arial",Font.BOLD,30));
-    Drawing.drawString(g, "Choosing: Player " + (selectedPlayer+1),460 ,190 );
+    Drawing.drawString("Choosing: Player " + (selectedPlayer+1),460 ,190 );
     
     g.setColor(Color.red);
      for(Button ptr : page.buttons)
@@ -167,7 +168,7 @@ public static Page Create(Tab _type){
    
    g.setFont(new Font("Arial",Font.PLAIN,30));
    g.setColor(Color.black);
-   Drawing.drawString(g,Cards.getEvent().getDesc(), 399, 314);
+   Drawing.drawString(Cards.getEvent().getDesc(), 399, 314);
  //  System.out.println("loaded event");
  }
  public static void eventStat(boolean b){
@@ -206,4 +207,13 @@ public static Page Create(Tab _type){
      if( selectedPlayer + i >= 0 && selectedPlayer + i < Player.getCarList().length)
      selectedPlayer += i;
  }
+public  static void SetPlayerIndex(int i){
+     if( selectedPlayer + i >= 0 && selectedPlayer + i < Player.getCarList().length)
+     selectedPlayer = i;
+ }
+public  static void SetPreviewIndex(int i){
+     if( selectedPlayer + i >= 0 && selectedPlayer + i < Player.getCarList().length)
+     selectedPlayer = i;
+ }
+  
 }

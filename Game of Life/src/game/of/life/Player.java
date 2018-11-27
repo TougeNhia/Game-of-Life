@@ -38,12 +38,17 @@ public class Player {
     }  
     
     public static Player addPlayer(Image _car, int test){
-       Player ptr = new Player(_car, test);
+       Player ptr = null;
        for(int i=0; i<numPlayers;i++){
            if(players[i] == null){
+               ptr = new Player(_car, test);
                players[i] = ptr; 
                break;
            }
+       }
+       if(ptr == null){
+           ptr = new Player(_car,test);
+           players[numPlayers-1] = ptr;
        }
        return ptr;
     }
