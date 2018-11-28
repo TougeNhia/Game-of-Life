@@ -105,8 +105,8 @@ public static Page Create(Tab _type){
      Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
 //comment this out later
      g.setColor(Color.red);
-     for(Button ptr : page.buttons)    
-       g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+//     for(Button ptr : page.buttons)    
+//       g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
  }
  else if(page.type == Tab.PLAY){
 //         for(Button ptr: page.buttons)
@@ -123,8 +123,8 @@ public static Page Create(Tab _type){
   g.setFont(new Font("Arial",Font.PLAIN,25));
    g.setColor(Color.black);
  Drawing.drawString(rules.get(rulesIndex), 193, 552);
- for(Button ptr: page.buttons)
-     g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+// for(Button ptr: page.buttons)
+//     g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
  }
  else if(page.type == Tab.PLAYERSELECT){ 
      Image list[] = Player.getCarList();
@@ -155,9 +155,9 @@ public static Page Create(Tab _type){
     else    
     Drawing.drawString("Choosing: Player " + (selectedPlayer+1),460 ,190 );
     
-    g.setColor(Color.red);
-     for(Button ptr : page.buttons)
-       g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+//    g.setColor(Color.red);
+//     for(Button ptr : page.buttons)
+//       g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
  }
  
      
@@ -176,7 +176,7 @@ public static Page Create(Tab _type){
         Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./Play Button.png") , 1042, 844, 0.0, 1, 1);
         Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./Play Button Muted.png") , 1042, 844, 0.0, 1, 1);
         Button ptr = elements.get(START);
-        g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+//        g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
         if(Button.college)
             Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./CollegeYES.png") , 175, 543, 0.0, 1, 1);
         else
@@ -194,7 +194,7 @@ public static Page Create(Tab _type){
    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);
    Button ptr = elements.get(EXITBUTTON);
    ptr.toggle = true;
-   g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+   //g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
    
    g.setFont(new Font("Arial",Font.BOLD,50));
    g.setColor(Color.WHITE);
@@ -270,7 +270,7 @@ public static Page Create(Tab _type){
    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);    
    Button ptr = elements.get(EXITBUTTON);
    ptr.toggle = true;
-   g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+ //  g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
    Cards cptr = Cards.getEvent();
    g.setFont(new Font("Arial",Font.BOLD,75));
    g.setColor(Color.WHITE);
@@ -312,7 +312,7 @@ public static Page Create(Tab _type){
     Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);
     Button ptr = elements.get(EXITBUTTON);
    ptr.toggle = true;
-   g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
+   //g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
    g.setColor(new Color(17,202,65));    
    g.setFont(new Font("Arial",Font.BOLD,45));
    g.drawString("Pay Day", 508-(5*Cards.getEvent().getName().length()), 305);

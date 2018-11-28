@@ -8,7 +8,7 @@ public class Board {
     public static boolean pause = true;
     private final static int NUM_COLUMNS = 21;      
     private static CarToken board[][] = new CarToken[NUM_ROWS][NUM_COLUMNS];
-    private static boolean showNumbers = true;
+    private static boolean showNumbers = false;
     private static boolean isActive = false;
     //private static boolean board[][];
         public static void Reset(){
