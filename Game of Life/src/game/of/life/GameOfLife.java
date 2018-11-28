@@ -236,11 +236,14 @@ public class GameOfLife extends JFrame implements Runnable {
 
         if(move && Player.getCurrentPlayer().getMoves() > 0){
             if(wait(15)){
+       
+            
         if(Board.checkCurrTileDir() != null)
             Player.getCurrentPlayer().move(Board.checkCurrTileDir(),Board.checkType());
         else
             Player.getCurrentPlayer().move(Player.getCurrentPlayer().getDir(),Board.checkType());
         }
+            
 
 
      }        

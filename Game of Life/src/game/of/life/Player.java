@@ -259,7 +259,7 @@ public class Player {
        }
            
 //up
-       else if(direction == Dir.UP && Board.checkBoard(currRow-1,currCol)){
+        if(direction == Dir.UP && Board.checkBoard(currRow-1,currCol)){
            rot = -90;
             Board.updateBoard(currRow-1,currCol);
              moves--;
@@ -279,31 +279,11 @@ public class Player {
              moves--;
              
             }
-       if(dir == CarToken.Type.STOP){
-          
-           if(status == COLLEGE){ 
-               moves = 0;
-               Cards.careerRoll(currPlayer);
-               return;
-           }
-       }
-       else if (dir == CarToken.Type.FORK){
-           
-       }
-       else if(dir == CarToken.Type.END){
-            isRetired = true;
-            moves = 0;
-            switchTurns();
-            return;
-        }
-       else if(!paid && dir == CarToken.Type.PAYDAY){
-            paid = true;
-            Cards.payDay(currPlayer);
-            return;
-       }       
+   
        if(moves <= 0){    
            moves = 0;
            hasSpun = false;
+           if(event(Board.checkType()))
            Cards.eventRoll(currPlayer);
            
        }
@@ -314,5 +294,32 @@ public class Player {
  
        System.out.println(dir);       
         
+    }
+    public boolean event(CarToken.Type dir){
+               
+        if(dir == CarToken.Type.STOP){          
+           if(status == COLLEGE){ 
+               moves = 0;
+               Cards.careerRoll(currPlayer);
+               return true;
+           }
+       }
+       else if (dir == CarToken.Type.FORK){
+           
+       }
+       else if(dir == CarToken.Type.END){
+            isRetired = true;
+            moves = 1;
+ //           switchTurns();
+            return true;
+        }
+       else if(!paid && dir == CarToken.Type.PAYDAY){
+            paid = true;
+            Cards.payDay(currPlayer);
+            return true;
+       }    
+        
+        
+        return false;
     }
 }

@@ -48,7 +48,7 @@ public class Spinner {
     }
     public static void testSpin(){
         
-        int moves = 10;
+        int moves = 1;
         Player.getCurrentPlayer().changeMoves(moves);
         Player.getCurrentPlayer().setSpun(true);
         System.out.println("cheated");
