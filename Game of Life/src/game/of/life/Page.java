@@ -47,7 +47,8 @@ rules.add(new String("1. In the player select menu you can choose the color of y
 rules.add(new String("2. College adds a 1.5x bonus to your salary, lets you choose from\n"
         + " 3 jobs instead of being given one, but has to start with $1500."));
 
-rulePics.add(Toolkit.getDefaultToolkit().getImage("./example(dontuseinfinalproj).png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 2.png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 1.png"));
 }
 public void addButton(Button button){
 buttons.add(button);
