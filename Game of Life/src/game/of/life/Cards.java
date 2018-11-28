@@ -115,6 +115,54 @@ public class Cards {
                         + "\n cry for a medic bag"
                         + "\n as you stride off."
                         + "\n (Gain $2500)",2500,GOOD,LIN));
+        events.add(new Cards("Donation",
+                         "You decide to\n "
+                        + "donate to a "
+                        + "\n ant farm"
+                        + "\n as the ants are going extinct."
+                        + "\n (Lose $2500)",-2500,BAD,LIN));
+        events.add(new Cards("car crash",
+                         "While driving home\n "
+                        + "half awake, you ram"
+                        + "\n into the back of another car"
+                        + "\n and the other person gets hurt."
+                        + "\n (Lose 5000)",-5000,BAD,LIN));
+        
+        events.add(new Cards("Rob a store",
+                         "While driving to the \n "
+                        + "getaway spot, your tire"
+                        + "\n pops and you go swurving"
+                        + "\n off the side of the road."
+                        + "\n (Lose 2000)",-2000,BAD,LIN));
+        events.add(new Cards("Rob a store",
+                         "While driving to the \n "
+                        + "getaway spot, your tire"
+                        + "\n pops and you go swurving"
+                        + "\n off the side of the road..."
+                        + "\n onto the getaway boat."
+                        + "\n (Gain 3000)",+3000,GOOD,LIN));
+        events.add(new Cards("Diamond Heist",
+                         "Successfully rob the biggest \n "
+                        + "diamond supply in the nation"
+                        + "\n while flying away in a chopper."
+                        + "\n (Gain 7500)",+7500,GOOD,LIN));
+        events.add(new Cards("BLACK FRIDAY",
+                         "Go out during black friday\n "
+                        + "you plan on spending no more"
+                        + "\n than $100, but you end up"
+                        + "\n spending a lot more..."
+                        + "\n (Lose $2500)",1750,BAD,LIN));
+        events.add(new Cards("Happy Houor",
+                         "After a long day of worrk, you decide\n "
+                        + "to go out to an expensive"
+                        + "\n resturant, after you get "
+                        + "\n the bill, you notice your mistake"
+                        + "\n (Lose 1000)",1000,BAD,LIN));
+        events.add(new Cards("money for charity",
+                         "Claim your rasing money for\n "
+                        + "the environment, but in reality"
+                        + "\n you end up keeping the money"
+                        + "\n (Gain $3000)",3000,GOOD,LIN));
     }
     public static void Reset(){
         career.clear();
