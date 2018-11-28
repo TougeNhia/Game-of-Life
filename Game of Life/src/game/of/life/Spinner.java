@@ -4,11 +4,14 @@ import java.awt.*;
 
 public class Spinner {
     final static private int numMoves = 8;
+    public static int coolDown;
     private static Image spinner = Toolkit.getDefaultToolkit().getImage("./Spinner.png");  
     private static Image arrow = Toolkit.getDefaultToolkit().getImage("./arrow.png"); 
     private final static int NUM_ROWS = 14;
     private final static int NUM_COLUMNS = 21; 
     private static int sec;
+    private static double angle =45;
+    private static double div = 2.5;
     private static int move;
     private static double rot;
     private static boolean on = false;
@@ -36,9 +39,11 @@ public class Spinner {
     public static void setOn(){
    //     if ()
         on = true;
+        Spin();
     }
     public static int Spin(){
-        sec = (int)(Math.random()* 5);
+        sec = (int)((Math.random()* 2)+1);
+        //div *= sec;
         return sec;
     }
     public static void testSpin(){
@@ -48,31 +53,42 @@ public class Spinner {
         Player.getCurrentPlayer().setSpun(true);
         System.out.println("cheated");
     }
-    public static void MoveArrow(int _timecount){
+    public static void MoveArrow(int _timecount, double fps){
         if(Player.getCurrentPlayer().hasSpun())
             return;
-        while (_timecount > move){
-            move++;
-        }
-        for (int i = 0; i < move; i++){
-            rot += 22.5;
+//        
+//        while (_timecount > move){
+//            move++;
+//        }
+//        for (int i = 0; i < move; i++){
+
+//        }
+//        boolean keepLooping = true;
+//            if (rot == 0 || rot == 45 || rot == 90 || rot == 135 || rot == 180 || rot == 225 || rot == 270 || rot == 315 ||  rot == 360){
+//                while (keepLooping)
+//                    for (int i = 0; i < move; i++){
+//                        rot += 22.5;
+//                        if(rot >= 360)
+//                            rot = 0;                    
+//                        if (rot != 0 || rot != 45 || rot != 90 || rot != 135 || rot != 180 || rot != 225 || rot != 270 || rot != 315 ||  rot != 360){
+//                            keepLooping = false;
+//                            break;
+//                        }
+//                    }
+//            keepLooping = false;    
+//            }rot += 22.5;       
+//            if(rot >= 360)
+//                rot = 0;     
+            rot += angle/div;
             if(rot >= 360)
                 rot = 0;
-        }
-        boolean keepLooping = true;
-            if (rot == 0 || rot == 45 || rot == 90 || rot == 135 || rot == 180 || rot == 225 || rot == 270 || rot == 315 ||  rot == 360){
-                while (keepLooping)
-                    for (int i = 0; i < move; i++){
-                        rot += 22.5;
-                        if(rot >= 360)
-                            rot = 0;                    
-                        if (rot != 0 || rot != 45 || rot != 90 || rot != 135 || rot != 180 || rot != 225 || rot != 270 || rot != 315 ||  rot != 360){
-                            keepLooping = false;
-                            break;
-                        }
-                    }
-            keepLooping = false;    
+            if(_timecount % fps == fps-1){
+            sec--;    
+            div *= 2;
             }
+
+        if(sec <= 0){
+         div = 2.5;
         on = false;
         int moves = 0;
         int test = 45;
@@ -85,11 +101,14 @@ public class Spinner {
             moves++;
             test+=45;
         }
-        System.out.println("rot: " + rot);
-//         System.out.println("moves: " + moves);
+       // System.out.println("rot: " + rot);
         Player.getCurrentPlayer().changeMoves(moves);
         Player.getCurrentPlayer().setSpun(true);
-        System.out.println("moves: " + Player.getCurrentPlayer().getMoves());
+//        System.out.println("moves: " + Player.getCurrentPlayer().getMoves());
+        }
+    }
+    public static void setMoves(){
+        
     }
     public int getXPos(){
         return xpos;

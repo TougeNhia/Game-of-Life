@@ -2,7 +2,7 @@ package game.of.life;
 import java.awt.*;
 import java.util.ArrayList;
 public class Player {
-    
+    public static int DAY;
     private static int numPlayers = 4;
     private static Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
     public final static int CAREER = 0;
@@ -13,17 +13,22 @@ public class Player {
     private static Player currPlayer;
     private static Player players[] = new Player[numPlayers]; 
     private static ArrayList<Player> plrList = new ArrayList<Player>();
+    private Cards job;   
     private int currRow;
     private int currCol;
     private Dir direct;
     private boolean hasSpun;
     private double rot;
     private boolean isRetired;
+    private int status;
+    private boolean paid;
     public static enum Dir{
     RIGHT,UP,DOWN,LEFT
     }
     public static void Reset(){
+        Merge();
         currPlayer = players[0];
+        DAY = 0;
     }
     public static Player addPlayer(Image _car){
        Player ptr = new Player(_car);  
@@ -33,23 +38,21 @@ public class Player {
     else
     plrList.add(ptr);    
     return ptr;
-    }  
-    
-    public static Player addPlayer(Image _car, int test){
-       Player ptr = null;
-       for(int i=0; i<numPlayers;i++){
-           if(players[i] == null){
-               ptr = new Player(_car, test);
-               players[i] = ptr; 
-               break;
-           }
-       }
-       if(ptr == null){
-           ptr = new Player(_car,test);
-           players[numPlayers-1] = ptr;
-       }
-       return ptr;
     }
+       public static Player addPlayer(Image _car, boolean college){
+       Player ptr = new Player(_car,college);  
+    if(plrList.size() >= numPlayers){
+        return null;
+    }
+    else
+    plrList.add(ptr);    
+    return ptr;
+    } 
+    public static void Wipe(){
+        plrList.clear();
+    }
+    
+
 
     Player(Image _car){
      moves = 0;
@@ -57,29 +60,34 @@ public class Player {
      currRow = 6;
      currCol = 17;
      money = 10000;
+     status = CAREER;
     }
         Player(Image _car, boolean college){
      if(college)
      {
          moves = 0;
         car = _car;
-        currRow = 7;
-        currCol = 17;
-        money = 5000;
-        
+  //      currRow = 7;
+ //       currCol = 17;
+      currRow = 6;
+     currCol = 20;
+        money = 1500;
+        status = COLLEGE;
+        direct = Dir.UP;
      }
 
          
     }    
     //use this one for testing    
+
     Player(Image _car, int test){
-         moves = 0;
-        car = _car;
-        currRow = 9;
-        currCol = 10;
-        money = 0;
-        direct = Dir.DOWN;
-        }
+     moves = 0;
+     car = _car;
+     currRow = 6;
+     currCol = 17;
+     money = 10000;
+     status = CAREER;
+    }
     public static Player getPlayer(int i){
         return players[i];
     }
@@ -88,6 +96,9 @@ public class Player {
     }
     public double getRot(){
         return rot;
+    }
+    public int getStats(){
+        return status;
     }
     public static int getNumPlayers(){
         return(numPlayers);
@@ -124,11 +135,27 @@ public class Player {
     public Dir getDir(){
         return direct;
     }
+    public Cards getJob(){
+        return job;
+    }
+    public void obtainJob(Cards ptr){
+        job = ptr;
+    }
     public int getMoney(){
         return money;
     }
     public static Player getCurrentPlayer(){
         return currPlayer;
+    }
+    public static Player[] getPlrArray(){
+        return players;
+    }
+    public static int getIndexOf(Player ptr){
+        for(int i=0; i<numPlayers;i++){
+            if(players[i] == ptr)
+                return i;
+        }
+        return 0;
     }
     public int getMoves(){
         return moves;
@@ -148,6 +175,9 @@ public class Player {
      public void setSpun(boolean b){
         hasSpun = b;
     }
+    public void setStat(int stat){
+        status = stat;
+    }
     public static Image[] getCarList(){
         return cars;
     }
@@ -161,22 +191,64 @@ public class Player {
         currRow = row;
         currCol = col;
     }
+    public static boolean CheckJob(Cards ptr){
+        for(Player pptr : plrList){
+            if(pptr != currPlayer && pptr.job == ptr)
+                return true;
+        }
+        return false;
+    }
     public static void switchTurns(){
-        System.out.println(currPlayer.currRow + " " + currPlayer.currCol);
+        Player ptr = currPlayer;
+        ptr.paid = false;
         for(int i=0;i<players.length;i++){
             if(players[i] == currPlayer){
-                if(i+1 < players.length && players[i+1] != null)
-                    currPlayer = players[i+1];
-                else
+                if(i+1 < players.length && players[i+1] != null){
+                     currPlayer = players[i+1];
+                }
+                   
+                else{
                     currPlayer = players[0];
-                
+                    DAY++;
+                }
                 break;
+            }
+        }
+        int i = 0;
+        while(currPlayer == ptr){
+            if(i < players.length && players[i] != currPlayer && !players[i].isRetired){
+             currPlayer = players[i];  
+            }
+            else if (i > players.length){
+                GameOfLife.gameOver = true;
             }
         }
     }
     public void move(Dir direction,CarToken.Type dir){
         
-       if(dir == CarToken.Type.MOVE){     
+        
+       if(dir == CarToken.Type.STOP){
+          
+           if(status == COLLEGE){ 
+               moves = 0;
+               Cards.careerRoll(currPlayer);
+               return;
+           }
+       }
+       else if (dir == CarToken.Type.FORK){
+           
+       }
+       else if(dir == CarToken.Type.END){
+            isRetired = true;
+            moves = 0;
+            switchTurns();
+            return;
+        }
+       else if(!paid && dir == CarToken.Type.PAYDAY){
+            paid = true;
+            Cards.payDay(currPlayer);
+            return;
+       }
        direct = direction;         
        if( direction == Dir.RIGHT && Board.checkBoard(currRow,currCol+1)){
             rot = 0;
@@ -207,18 +279,39 @@ public class Player {
              moves--;
              
             }
-       if(moves <= 0){
+       if(dir == CarToken.Type.STOP){
+          
+           if(status == COLLEGE){ 
+               moves = 0;
+               Cards.careerRoll(currPlayer);
+               return;
+           }
+       }
+       else if (dir == CarToken.Type.FORK){
+           
+       }
+       else if(dir == CarToken.Type.END){
+            isRetired = true;
+            moves = 0;
+            switchTurns();
+            return;
+        }
+       else if(!paid && dir == CarToken.Type.PAYDAY){
+            paid = true;
+            Cards.payDay(currPlayer);
+            return;
+       }       
+       if(moves <= 0){    
+           moves = 0;
            hasSpun = false;
-           switchTurns();
-          Cards.eventRoll(currPlayer);
+           Cards.eventRoll(currPlayer);
            
        }
+           
+       
        System.out.println(moves);  
-       }
-       else if(dir == CarToken.Type.STOP){
-           
-       }
-       else 
+       
+ 
        System.out.println(dir);       
         
     }

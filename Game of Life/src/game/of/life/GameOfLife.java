@@ -10,12 +10,14 @@ import javax.swing.*;
 public class GameOfLife extends JFrame implements Runnable {
     
     boolean animateFirstTime = true;
+    static boolean gameOver;
     static boolean startGame;
     Image image;
     Graphics2D g;
     int timer;
     private int timeCount;
     boolean move;
+    double frameRate = 40;
     Image cars[] = {Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 3.png"),Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 4.png")};
 //    Player plr1 = Player.addPlayer(Toolkit.getDefaultToolkit().getImage("./TRANSP CAR.png"),1);
 //    Player plr2 = Player.addPlayer( Toolkit.getDefaultToolkit().getImage("./TRANSPP CAR 2.png"));
@@ -25,16 +27,20 @@ public class GameOfLife extends JFrame implements Runnable {
     Page playerselect = Page.Create(Page.Tab.PLAYERSELECT,Toolkit.getDefaultToolkit().getImage("./Player Select.png" ));
     Page rules = Page.Create(Page.Tab.RULES,Toolkit.getDefaultToolkit().getImage("./Rule Screen.png" ));
     Page menu = Page.Create(Page.Tab.MENU, Toolkit.getDefaultToolkit().getImage("./Menu Screen.png"));
-
+    //hitboxes not images (x y refers to top left not center)
     Button playButton = menu.createButton(Button.Type.PLAY,18,389,295,130);
+    Button scrollRight = rules.createButton(Button.Type.RIGHT, 705, 700, 198, 142);
+    Button scrollLeft = rules.createButton(Button.Type.LEFT, 224, 700, 198, 142);
     Button ruleButton = menu.createButton(Button.Type.RULES,18,558,295,130);
     Button rightArrow = playerselect.createButton(Button.Type.RIGHT,721,292,200,142);
     Button leftArrow = playerselect.createButton(Button.Type.LEFT,255,292,200,142);
-    Button backToMenu = rules.createButton(Button.Type.CANCEL, 60, 60, 200, 142);
+    Button backToMenu = rules.createButton(Button.Type.CANCEL, 27, 40, 247, 102);
     Button backMenu = playerselect.createButton(Button.Type.CANCEL, 15, 39, 244, 102);
     Button exitEvent = ingame.createElem(Button.Type.CANCEL, 316,241,78,75);
     Button selectCar = playerselect.createButton(Button.Type.CONFIRM,468,494,248,102);
     Button startgame = playerselect.createElem(Button.Type.PLAY, 919, 793, 247, 102);
+    Button collegeYes = playerselect.createElem(Button.Type.BOOLEAN, 20, 519, 318, 48);
+    
     //Button move = ingame.createButton(Button.Type.PLAY, , ERROR, WIDTH, WIDTH);
     
     
@@ -49,6 +55,7 @@ public class GameOfLife extends JFrame implements Runnable {
     }
 
     public GameOfLife() {
+                Page.Init();
                 Page.SetPage(menu);
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -60,8 +67,10 @@ public class GameOfLife extends JFrame implements Runnable {
                     e.getY() - Window.getY(0));  
                     if(Board.detectSpinner(e.getX() - Window.getX(0),
                     e.getY() - Window.getY(0))){
-                        if(!Board.pause && Board.ifActive())
-                            Spinner.MoveArrow(timeCount);
+                        if(Spinner.coolDown == 0 && !Board.pause && Board.ifActive()){
+                            if(Player.getCurrentPlayer().getMoves() == 0)
+                            Spinner.setOn();
+                        }
                     }
                 
 
@@ -93,9 +102,17 @@ public class GameOfLife extends JFrame implements Runnable {
 
             public void keyPressed(KeyEvent e) {
                 if (e.VK_UP == e.getKeyCode()) {
+                    
+                        
                 } else if (e.VK_DOWN == e.getKeyCode()) {
                 } else if (e.VK_LEFT == e.getKeyCode()) {
+                    if(Board.ifActive() && Cards.getEvent() !=null){
+                        Cards.changePreview(-1);
+                    }
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
+                    if(Board.ifActive() && Cards.getEvent() !=null){
+                        Cards.changePreview(1);
+                    }
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
@@ -157,7 +174,7 @@ public class GameOfLife extends JFrame implements Runnable {
         while (true) {
             animate();
             repaint();
-            double seconds = .025;    //time that 1 frame takes.
+            double seconds = 1/frameRate;    //time that 1 frame takes.
             int miliseconds = (int) (1000.0 * seconds);
             try {
                 Thread.sleep(miliseconds);
@@ -187,43 +204,61 @@ public class GameOfLife extends JFrame implements Runnable {
 
         }
         if(startGame){
-            startGame = false;
+            startGame = false;    
+            Board.changeActive(true);
             reset();
+            if(Player.getCurrentPlayer().getStats() == Player.CAREER)
+                Cards.careerRoll(Player.getCurrentPlayer());
+            else{
+                exitEvent.toggle = true;
+                exitEvent.pressed(Page.GetCurrPage());
+            }
         }
         //if pause is false, then the game will run
         if(!Board.pause && Board.ifActive()){
         if(Player.getCurrentPlayer().hasSpun()){
-            if(move){
-                
-            }
-            else if(timer % 10 == 9){
+          if(wait(10)){
             move = true;
-            }
-        }
+            }  
+        }      
         else{
             timer = 0;
             move = false;
-        }  
+        }
+        if(wait(20) && Player.getCurrentPlayer().getJob() == null && Player.getCurrentPlayer().getStats() == Player.CAREER)
+        Cards.careerRoll(Player.getCurrentPlayer());
         
+        if (Spinner.getOn()){
+//            if (timeCount % frameRate == frameRate-1){
+                Spinner.MoveArrow(timeCount, frameRate);
+//            }
+        }
 
         if(move && Player.getCurrentPlayer().getMoves() > 0){
-            if(timeCount % 15 == 14){
+            if(wait(15)){
         if(Board.checkCurrTileDir() != null)
             Player.getCurrentPlayer().move(Board.checkCurrTileDir(),Board.checkType());
         else
             Player.getCurrentPlayer().move(Player.getCurrentPlayer().getDir(),Board.checkType());
         }
-        
+
 
      }        
         timeCount++;
         timer++;
+        if(Spinner.coolDown > 0)
+            Spinner.coolDown--;
         }
         //timeCount goes 40 up per second.
     }
 public int getTC(){
 return timeCount;
 }
+    public boolean wait(int time){
+    if(timeCount % time == time-1)
+        return true;
+    return false;
+    }
 public static void setStart(boolean b){
     startGame = b;
 }
