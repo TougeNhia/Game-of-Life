@@ -77,6 +77,7 @@ public class GameOfLife extends JFrame implements Runnable {
                 }                
                 else if(e.BUTTON3 == e.getButton()){
                 System.out.println(Page.GetCurrPage().getTab());
+                if(Board.ifActive())
                 Spinner.testSpin();
                 }
                 repaint();
@@ -112,9 +113,13 @@ public class GameOfLife extends JFrame implements Runnable {
                 } else if (e.VK_RIGHT == e.getKeyCode()) {
                     if(Board.ifActive() && Cards.getEvent() !=null){
                         Cards.changePreview(1);
+                        Cards.getMult();
                     }
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
+                }
+                else if (e.VK_SPACE ==  e.getKeyCode()){
+                    Cards.Confirm();
                 }
                 repaint();
             }
@@ -204,6 +209,7 @@ public class GameOfLife extends JFrame implements Runnable {
 
         }
         if(startGame){
+            Spinner.coolDown = 10;
             startGame = false;    
             Board.changeActive(true);
             reset();
@@ -225,8 +231,10 @@ public class GameOfLife extends JFrame implements Runnable {
             timer = 0;
             move = false;
         }
-        if(wait(20) && Player.getCurrentPlayer().getJob() == null && Player.getCurrentPlayer().getStats() == Player.CAREER)
+        if(wait(20) && Player.getCurrentPlayer().getJob() == null && Player.getCurrentPlayer().getStats() == Player.CAREER){
         Cards.careerRoll(Player.getCurrentPlayer());
+        System.out.println(Player.getPlayer(0).getJob());
+        }
         
         if (Spinner.getOn()){
 //            if (timeCount % frameRate == frameRate-1){
@@ -236,16 +244,11 @@ public class GameOfLife extends JFrame implements Runnable {
 
         if(move && Player.getCurrentPlayer().getMoves() > 0){
             if(wait(15)){
-       
-            
         if(Board.checkCurrTileDir() != null)
             Player.getCurrentPlayer().move(Board.checkCurrTileDir(),Board.checkType());
         else
             Player.getCurrentPlayer().move(Player.getCurrentPlayer().getDir(),Board.checkType());
-        }
-            
-
-
+        }     
      }        
         timeCount++;
         timer++;

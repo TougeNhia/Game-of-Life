@@ -193,7 +193,7 @@ public class Player {
     }
     public static boolean CheckJob(Cards ptr){
         for(Player pptr : plrList){
-            if(pptr != currPlayer && pptr.job == ptr)
+            if(Cards.CheckJob(ptr)|| pptr.job == ptr)
                 return true;
         }
         return false;
@@ -227,28 +227,7 @@ public class Player {
     public void move(Dir direction,CarToken.Type dir){
         
         
-       if(dir == CarToken.Type.STOP){
-          
-           if(status == COLLEGE){ 
-               moves = 0;
-               Cards.careerRoll(currPlayer);
-               return;
-           }
-       }
-       else if (dir == CarToken.Type.FORK){
-           
-       }
-       else if(dir == CarToken.Type.END){
-            isRetired = true;
-            moves = 0;
-            switchTurns();
-            return;
-        }
-       else if(!paid && dir == CarToken.Type.PAYDAY){
-            paid = true;
-            Cards.payDay(currPlayer);
-            return;
-       }
+       event(dir);
        direct = direction;         
        if( direction == Dir.RIGHT && Board.checkBoard(currRow,currCol+1)){
             rot = 0;
@@ -301,25 +280,26 @@ public class Player {
            if(status == COLLEGE){ 
                moves = 0;
                Cards.careerRoll(currPlayer);
-               return true;
+               return false;
            }
        }
        else if (dir == CarToken.Type.FORK){
-           
+           Cards.getChoice(currPlayer);
+                return false;
        }
        else if(dir == CarToken.Type.END){
             isRetired = true;
             moves = 1;
  //           switchTurns();
-            return true;
+            return false;
         }
        else if(!paid && dir == CarToken.Type.PAYDAY){
             paid = true;
             Cards.payDay(currPlayer);
-            return true;
+            return false;
        }    
         
         
-        return false;
+        return true;
     }
 }

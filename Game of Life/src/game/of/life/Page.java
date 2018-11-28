@@ -108,7 +108,6 @@ public static Page Create(Tab _type){
  Drawing.drawImage(page.getImage(), Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
  if(rulesIndex < rulePics.size() && rulePics.get(rulesIndex) != null){
  Drawing.drawImage(rulePics.get(rulesIndex),Window.WINDOW_WIDTH/2, 2*Window.WINDOW_HEIGHT/5+30,0.0,0.6,0.6);
- System.out.println(rulePics.size()-1);
  }
   g.setFont(new Font("Arial",Font.PLAIN,25));
    g.setColor(Color.black);
@@ -177,10 +176,11 @@ public static Page Create(Tab _type){
  }
  public static void loadCard(Graphics2D g,int cause){
    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./Event Box.png" ),  Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
-   Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1); // x+30 , y+50
+   // x+30 , y+50
   
   
    if(cause == Cards.EVENT){
+   Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);
    Button ptr = elements.get(EXITBUTTON);
    ptr.toggle = true;
    g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
@@ -218,6 +218,7 @@ public static Page Create(Tab _type){
    g.setFont(new Font("Arial",Font.BOLD,45));
    g.drawString(ptr.getName(), 508-(5*ptr.getName().length()), 305);
    //description
+   
    if(ptr.getSalary() == 0){
    g.setFont(new Font("Arial",Font.PLAIN,25));
    g.setColor(Color.black);
@@ -230,6 +231,8 @@ public static Page Create(Tab _type){
    
    if(ptr.getOutlier() != Cards.UNSTABLE)
    Drawing.drawString("PayDay Salary: $" + ptr.getSalary(),365,422);
+   
+   
    
    if(ptr.getOutlier() > 0){
        if(ptr.getOutlier() == Cards.DEGREE){
@@ -253,6 +256,7 @@ public static Page Create(Tab _type){
       }
 
    else if (cause == Cards.CAREER){
+   Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);    
    Button ptr = elements.get(EXITBUTTON);
    ptr.toggle = true;
    g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());
@@ -294,6 +298,7 @@ public static Page Create(Tab _type){
    
    }
    else if(cause == Cards.PAYDAY){
+    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);
     Button ptr = elements.get(EXITBUTTON);
    ptr.toggle = true;
    g.drawRect(ptr.getXPos(), ptr.getYPos(), ptr.getXSize(), ptr.getYSize());

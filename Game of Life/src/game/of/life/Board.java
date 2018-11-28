@@ -112,17 +112,25 @@ public class Board {
         g.setFont(new Font("Arial",Font.PLAIN,20));
         if(Player.getPlayer(0) != null){
         g.drawString("Player 1 = $" + Player.getPlayer(0).getMoney(), 25, Window.getY(Window.getHeight2())+30);
+        if(Player.getPlayer(0).getJob() != null)
+        g.drawString(Player.getPlayer(0).getJob().getName(), 25, Window.getY(Window.getHeight2())+60);
         Drawing.drawImage(Player.getPlayer(0).getCar(), Window.getX(xdelta * Player.getPlayer(0).getCol() + 13), Window.getY(ydelta * Player.getPlayer(0).getRow() + 13),Player.getPlayer(0).getRot(), 0.55, 0.55);
         }
         if(Player.getPlayer(1) != null){
         g.drawString("Player 2 = $" + Player.getPlayer(1).getMoney(), 275, Window.getY(Window.getHeight2())+30);
+        if(Player.getPlayer(1).getJob() != null)
+        g.drawString(Player.getPlayer(1).getJob().getName(), 275, Window.getY(Window.getHeight2())+60);
         Drawing.drawImage(Player.getPlayer(1).getCar(), Window.getX(xdelta * Player.getPlayer(1).getCol() + 39), Window.getY(ydelta * Player.getPlayer(1).getRow() + 13), Player.getPlayer(1).getRot(), 0.55, 0.55);
         }
         if(Player.getPlayer(2) != null){
         g.drawString("Player 3 = $" + Player.getPlayer(2).getMoney(), 575, Window.getY(Window.getHeight2())+30);
+        if(Player.getPlayer(2).getJob() != null)
+        g.drawString(Player.getPlayer(0).getJob().getName(), 575, Window.getY(Window.getHeight2())+60);
         Drawing.drawImage(Player.getPlayer(2).getCar(), Window.getX(xdelta * Player.getPlayer(2).getCol() + 13), Window.getY(ydelta * Player.getPlayer(2).getRow() + 39), Player.getPlayer(2).getRot(), 0.55, 0.55);
         }
         if(Player.getPlayer(3) != null){
+        if(Player.getPlayer(3).getJob() != null)
+        g.drawString(Player.getPlayer(3).getJob().getName(), 850, Window.getY(Window.getHeight2())+60);    
         g.drawString("Player 4 = $" + Player.getPlayer(3).getMoney(), 850, Window.getY(Window.getHeight2())+30);
         Drawing.drawImage(Player.getPlayer(3).getCar(), Window.getX(xdelta * Player.getPlayer(3).getCol() + 39), Window.getY(ydelta * Player.getPlayer(3).getRow() + 39), Player.getPlayer(3).getRot(), 0.55, 0.55);
         }
