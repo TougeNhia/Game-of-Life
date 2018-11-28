@@ -46,8 +46,19 @@ rules.add(new String("1. In the player select menu you can choose the color of y
         + "and choose wether to start the game in college."));     
 rules.add(new String("2. College adds a 1.5x bonus to your salary, lets you choose from\n"
         + " 3 jobs instead of being given one, but has to start with $1500."));
+rules.add(new String("3. The green boxes are paydays. You receive your pay on that day.\n"));
+rules.add(new String("4. The yellow box indicate the end\n"));
+rules.add(new String("5. The arrows indicate a fork in the road. You decide where to go\n"));
+rules.add(new String("6. The red box with the stop sign indicates your graduation day.\n"
+        + " You will pick your job there."));
 
-rulePics.add(Toolkit.getDefaultToolkit().getImage("./example(dontuseinfinalproj).png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 2.png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 12.png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture.png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 4.png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 3.png"));
+rulePics.add(Toolkit.getDefaultToolkit().getImage("./Capture 1.png"));
+
 }
 public void addButton(Button button){
 buttons.add(button);
