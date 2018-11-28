@@ -77,8 +77,9 @@ public class GameOfLife extends JFrame implements Runnable {
                 }                
                 else if(e.BUTTON3 == e.getButton()){
                 System.out.println(Page.GetCurrPage().getTab());
-                if(Board.ifActive())
+                if(Board.ifActive()){
                 Spinner.testSpin();
+                }
                 }
                 repaint();
             }
@@ -167,6 +168,11 @@ public class GameOfLife extends JFrame implements Runnable {
             return;
         }
         //if
+        if(gameOver)
+        {
+            Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./Game Over.png"),  Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
+            Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./back2Menu.png"),  Window.WINDOW_WIDTH/2, 4*Window.WINDOW_HEIGHT/5, 0.0, 1, 1);
+        }
         Page.loadPage(g, Page.GetCurrPage());
         Board.Draw(g);
         Page.loadElm(g, Page.GetCurrPage());
@@ -208,6 +214,7 @@ public class GameOfLife extends JFrame implements Runnable {
             reset();
 
         }
+        
         if(startGame){
             Spinner.coolDown = 10;
             startGame = false;    
@@ -221,7 +228,10 @@ public class GameOfLife extends JFrame implements Runnable {
             }
         }
         //if pause is false, then the game will run
-        if(!Board.pause && Board.ifActive()){
+        if(!Board.pause && Board.ifActive()){        
+            if(!Player.checkAllRetired()){
+            gameOver = true;
+        }
         if(Player.getCurrentPlayer().hasSpun()){
           if(wait(10)){
             move = true;

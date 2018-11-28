@@ -188,8 +188,8 @@ public static Page Create(Tab _type){
  public static void loadCard(Graphics2D g,int cause){
    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./Event Box.png" ),  Window.WINDOW_WIDTH/2, Window.WINDOW_HEIGHT/2, 0.0, 1, 1);
    // x+30 , y+50
-  
-  
+
+   
    if(cause == Cards.EVENT){
    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);
    Button ptr = elements.get(EXITBUTTON);
@@ -265,6 +265,30 @@ public static Page Create(Tab _type){
    }       
    }
       }
+   else if (cause == Cards.END){
+       
+       Cards ptr = Cards.getEvent();
+  Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);
+   Button bptr = elements.get(EXITBUTTON);
+   bptr.toggle = true;
+      //top
+   g.setColor(Color.WHITE);
+   if(Player.getCurrentPlayer().getStats() == Player.COLLEGE)
+   g.drawString("Player " + (Player.getIndexOf(Player.getCurrentPlayer())+1) + " Retired", 365, 205);
+   //title
+   g.setColor(new Color(17,202,65));    
+   g.setFont(new Font("Arial",Font.BOLD,45));
+   g.drawString("Retired", 508-(5*ptr.getName().length()), 305);
+   //description
+   
+   g.setFont(new Font("Arial",Font.PLAIN,25));
+   g.setColor(Color.black);
+   Drawing.drawString("You have reached retirement\n"
+           + "now you can just relax and \n"
+           + "watch the others\n"
+           + "(suffer) play the game.", 405, 314);
+       
+   }
 
    else if (cause == Cards.CAREER){
    Drawing.drawImage(Toolkit.getDefaultToolkit().getImage("./ExitButton.png" ),  354, 278, 0.0, 1, 1);    

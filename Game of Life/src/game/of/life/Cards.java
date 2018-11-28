@@ -16,6 +16,7 @@ public class Cards {
     public static final int EVENT = 3;
     public static final int PAYDAY = 2;
     public static final int CHOICE = 4;
+    public static final int END = 5;
     //outlier means any special 'traits' like degree and unstable
     private static int preview = 0;
     private int outlier;
@@ -117,7 +118,8 @@ public class Cards {
                         + "\n cry for a medic bag"
                         + "\n as you stride off."
                         + "\n (Gain $2500)",2500,GOOD,LIN));
-        choice = new Cards("Choose","choice 1 or 2 [left arrow key for 1] [right arrow for 2]");
+        choice = new Cards("Fork","Woah there a fork in a road\n"
+                + " [left arrow key to go up] [right arrow to go down]");
     }
     public static void Reset(){
         career.clear();
@@ -175,13 +177,18 @@ public class Cards {
     }
     public static Cards getChoice(Player cpr){
         preview = 2;
-        mult.add(new Cards("Up","you lose a lot of money idk"));
+        mult.add(new Cards("Up","just go up"+ "\n [Spacebar] to confirm"));
         mult.add(choice);
-        mult.add(new Cards("Down","something"));
+        mult.add(new Cards("Down","just go down"
+                + "\n [Spacebar] to confirm"));
          reason = CHOICE;
          event = choice;
         Page.eventStat(true);
         return choice;
+    }
+    public static void End(){
+        reason = END;
+        Page.eventStat(true);
     }
     public static ArrayList getMult(){
         return mult;

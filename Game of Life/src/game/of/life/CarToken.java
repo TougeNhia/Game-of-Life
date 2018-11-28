@@ -79,4 +79,12 @@ public class CarToken {
             }
         }
     }
+//    public boolean checkRtired(){
+//       for(int i = 0 ; i < slots.length;i++){
+//           if(slots[i]!= null && slots[i].!isRetired())
+//               continue;
+//           return true;
+//       }
+       return false;
+    }
 }

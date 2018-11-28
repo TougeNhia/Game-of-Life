@@ -15,6 +15,7 @@ public class Player {
     private static ArrayList<Player> plrList = new ArrayList<Player>();
     private Cards job;   
     private int currRow;
+    private static int plrCount = 0;
     private int currCol;
     private Dir direct;
     private boolean hasSpun;
@@ -57,23 +58,26 @@ public class Player {
     Player(Image _car){
      moves = 0;
      car = _car;
-     currRow = 6;
-     currCol = 17;
+//     currRow = 6;
+//     currCol = 17;
+currRow = 11;
+currCol = 15;
      money = 10000;
      status = CAREER;
+          direct = Dir.LEFT;
     }
         Player(Image _car, boolean college){
      if(college)
      {
          moves = 0;
         car = _car;
-  //      currRow = 7;
- //       currCol = 17;
-      currRow = 6;
-     currCol = 20;
+        currRow = 7;
+        currCol = 17;
+//      currRow = 6;
+//     currCol = 20;
         money = 1500;
         status = COLLEGE;
-        direct = Dir.UP;
+     //   direct = Dir.UP;
      }
 
          
@@ -199,33 +203,36 @@ public class Player {
         return false;
     }
     public static void switchTurns(){
+        
         Player ptr = currPlayer;
         ptr.paid = false;
         for(int i=0;i<players.length;i++){
             if(players[i] == currPlayer){
                 if(i+1 < players.length && players[i+1] != null){
                      currPlayer = players[i+1];
+                     System.out.print("done n");
                 }
                    
                 else{
                     currPlayer = players[0];
                     DAY++;
+                    
+                    System.out.print("done a");
                 }
                 break;
             }
         }
-        int i = 0;
-        while(currPlayer == ptr){
-            if(i < players.length && players[i] != currPlayer && !players[i].isRetired){
-             currPlayer = players[i];  
-            }
-            else if (i > players.length){
-                GameOfLife.gameOver = true;
-            }
-        }
+//        int i = 0;
+//        while(currPlayer == ptr){
+//            if(i < players.length && players[i] != currPlayer && !players[i].isRetired){
+//             currPlayer = players[i];  
+//            }
+//            else if (i > players.length){
+//                GameOfLife.gameOver = true;
+//            }
+        
     }
     public void move(Dir direction,CarToken.Type dir){
-        
         
        event(dir);
        direct = direction;         
@@ -288,8 +295,15 @@ public class Player {
                 return false;
        }
        else if(dir == CarToken.Type.END){
+            plrCount++;
+            if(plrCount == plrList.size()-1){
+                GameOfLife.gameOver = true;
+            System.out.print("true sfadfd");
+            }
+            
             isRetired = true;
-            moves = 1;
+            moves = 0;
+            Cards.End();
  //           switchTurns();
             return false;
         }
@@ -297,9 +311,18 @@ public class Player {
             paid = true;
             Cards.payDay(currPlayer);
             return false;
-       }    
-        
+       }
         
         return true;
+    }
+    
+    //skips retires, returns true if one is not retired
+    public static boolean checkAllRetired(){
+       for(Player ptr : players){
+           if(ptr != null && ptr.isRetired)
+               continue;
+           return true;
+       }
+       return false;
     }
 }
