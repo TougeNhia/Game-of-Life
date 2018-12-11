@@ -15,6 +15,8 @@ public class Cards {
     public static final int CAREER = 1;
     public static final int EVENT = 3;
     public static final int PAYDAY = 2;
+    public static final int CHOICE = 4;
+    public static final int END = 5;
     //outlier means any special 'traits' like degree and unstable
     private static int preview = 0;
     private int outlier;
@@ -24,6 +26,7 @@ public class Cards {
     private String name;
     private static ArrayList<Cards> career = new ArrayList();
     private static ArrayList<Cards> events = new ArrayList();
+    public static Cards choice;
     //if i wanted more to scroll through
     private static ArrayList<Cards>mult = new ArrayList();
     private double outcome;
@@ -50,10 +53,10 @@ public class Cards {
                + "Despite the title, you are\n" +
                "really just an actor playing as a doctor.\n" +
                "(with good pay though) ", 3500 , 500, "Doctor",DEGREE));
-       career.add(new Cards("You are a very popular\n vlogger my friend.", 83342, "Celebrity"));
+       career.add(new Cards("You are a very popular\n vlogger my friend.", 1215, "Celebrity"));
        career.add(new Cards("Collect taxes and deals with  finances", 1500 , 4000, "Accountant",DEGREE));
        career.add(new Cards("Studies and practices laws", 2500 , 1000, "Lawyer",DEGREE));
-       career.add(new Cards("     *whistles*", 1, 6500, "Thief",UNSTABLE));
+       career.add(new Cards("     *whistles*", 1, 3500, "Thief",UNSTABLE));
         
        events.add(new Cards("Robbed",
                          "you were unlucky enough"
@@ -115,7 +118,8 @@ public class Cards {
                         + "\n cry for a medic bag"
                         + "\n as you stride off."
                         + "\n (Gain $2500)",2500,GOOD,LIN));
-        events.add(new Cards("Donation",
+        
+events.add(new Cards("Donation",
                          "You decide to\n "
                         + "donate to a "
                         + "\n ant farm"
@@ -163,6 +167,8 @@ public class Cards {
                         + "the environment, but in reality"
                         + "\n you end up keeping the money"
                         + "\n (Gain $3000)",3000,GOOD,LIN));
+        choice = new Cards("Fork","Woah there a fork in a road\n"
+                + " [left arrow key to go up] [right arrow to go down]");
     }
     public static void Reset(){
         career.clear();
@@ -190,7 +196,7 @@ public class Cards {
 "through each job and \n" +
 "[Spacebar] to confirm"));
             for(int i = 1; i<4;i++){
-
+                roll = (int)(Math.random()* career.size());
                     while(Player.CheckJob(career.get(roll)))
                         roll = (int)(Math.random()* career.size());
 
@@ -218,9 +224,21 @@ public class Cards {
 
                 
     }
-//    public static void getChoice(){
-//        new Cards("A Choice","")
-//    }
+    public static Cards getChoice(Player cpr){
+        preview = 2;
+        mult.add(new Cards("Up","just go up"+ "\n [Spacebar] to confirm"));
+        mult.add(choice);
+        mult.add(new Cards("Down","just go down"
+                + "\n [Spacebar] to confirm"));
+         reason = CHOICE;
+         event = choice;
+        Page.eventStat(true);
+        return choice;
+    }
+    public static void End(){
+        reason = END;
+        Page.eventStat(true);
+    }
     public static ArrayList getMult(){
         return mult;
     }
@@ -310,12 +328,21 @@ public class Cards {
     public static void Confirm(){
         ArrayList<Button> ptr = Page.getElems();
         if(reason == CAREER && preview != 0){
-            event = mult.get(preview);    
+            
+            event = mult.get(preview);   
+            ptr.get(Page.EXITBUTTON).toggle = true;
             ptr.get(Page.EXITBUTTON).pressed(Page.GetCurrPage());
         }
-        else{
-            event = mult.get(preview);  
-            ptr.get(Page.EXITBUTTON).pressed(Page.GetCurrPage());
+//        else{
+//            event = mult.get(preview);  
+//            ptr.get(Page.EXITBUTTON).pressed(Page.GetCurrPage());
+//        }
+    }
+        public static boolean CheckJob(Cards ptr){
+        for(Cards pptr : mult){
+            if(pptr == ptr)
+                return true;
         }
+        return false;
     }
 }

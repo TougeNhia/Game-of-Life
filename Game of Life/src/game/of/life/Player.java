@@ -15,6 +15,7 @@ public class Player {
     private static ArrayList<Player> plrList = new ArrayList<Player>();
     private Cards job;   
     private int currRow;
+    private static int plrCount = 0;
     private int currCol;
     private Dir direct;
     private boolean hasSpun;
@@ -67,13 +68,13 @@ public class Player {
      {
          moves = 0;
         car = _car;
-  //      currRow = 7;
- //       currCol = 17;
-      currRow = 6;
-     currCol = 20;
-        money = 1500;
+        currRow = 7;
+        currCol = 17;
+//      currRow = 6;
+//     currCol = 20;
+        money = 5000;
         status = COLLEGE;
-        direct = Dir.UP;
+     //   direct = Dir.UP;
      }
 
          
@@ -193,62 +194,44 @@ public class Player {
     }
     public static boolean CheckJob(Cards ptr){
         for(Player pptr : plrList){
-            if(pptr != currPlayer && pptr.job == ptr)
+            if(Cards.CheckJob(ptr)|| pptr.job == ptr)
                 return true;
         }
         return false;
     }
     public static void switchTurns(){
+        
         Player ptr = currPlayer;
         ptr.paid = false;
         for(int i=0;i<players.length;i++){
             if(players[i] == currPlayer){
                 if(i+1 < players.length && players[i+1] != null){
                      currPlayer = players[i+1];
+                     System.out.print("done n");
                 }
                    
                 else{
                     currPlayer = players[0];
                     DAY++;
+                    
+                    System.out.print("done a");
                 }
                 break;
             }
         }
-        int i = 0;
-        while(currPlayer == ptr){
-            if(i < players.length && players[i] != currPlayer && !players[i].isRetired){
-             currPlayer = players[i];  
-            }
-            else if (i > players.length){
-                GameOfLife.gameOver = true;
-            }
-        }
+//        int i = 0;
+//        while(currPlayer == ptr){
+//            if(i < players.length && players[i] != currPlayer && !players[i].isRetired){
+//             currPlayer = players[i];  
+//            }
+//            else if (i > players.length){
+//                GameOfLife.gameOver = true;
+//            }
+        
     }
     public void move(Dir direction,CarToken.Type dir){
         
-        
-       if(dir == CarToken.Type.STOP){
-          
-           if(status == COLLEGE){ 
-               moves = 0;
-               Cards.careerRoll(currPlayer);
-               return;
-           }
-       }
-       else if (dir == CarToken.Type.FORK){
-           
-       }
-       else if(dir == CarToken.Type.END){
-            isRetired = true;
-            moves = 0;
-            switchTurns();
-            return;
-        }
-       else if(!paid && dir == CarToken.Type.PAYDAY){
-            paid = true;
-            Cards.payDay(currPlayer);
-            return;
-       }
+       event(dir);
        direct = direction;         
        if( direction == Dir.RIGHT && Board.checkBoard(currRow,currCol+1)){
             rot = 0;
@@ -301,25 +284,42 @@ public class Player {
            if(status == COLLEGE){ 
                moves = 0;
                Cards.careerRoll(currPlayer);
-               return true;
+               return false;
            }
        }
        else if (dir == CarToken.Type.FORK){
-           
+           Cards.getChoice(currPlayer);
+                return false;
        }
        else if(dir == CarToken.Type.END){
+            plrCount++;
+            if(plrCount == plrList.size()-1){
+                GameOfLife.gameOver = true;
+            System.out.print("true sfadfd");
+            }
+            
             isRetired = true;
-            moves = 1;
+            moves = 0;
+            Cards.End();
  //           switchTurns();
-            return true;
+            return false;
         }
        else if(!paid && dir == CarToken.Type.PAYDAY){
             paid = true;
             Cards.payDay(currPlayer);
-            return true;
-       }    
+            return false;
+       }
         
-        
-        return false;
+        return true;
+    }
+    
+    //skips retires, returns true if one is not retired
+    public static boolean checkAllRetired(){
+       for(Player ptr : players){
+           if(ptr != null && ptr.isRetired)
+               continue;
+           return true;
+       }
+       return false;
     }
 }
